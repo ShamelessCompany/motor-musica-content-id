@@ -1,0 +1,48 @@
+{
+  "project": "Motor Procedural de Musica Content ID",
+  "template_version": "1.0",
+  "midi_type": 1,
+  "channels": [
+    {
+      "midi_channel_0_indexed": 0,
+      "midi_channel_1_indexed": 1,
+      "role": "chords_pads",
+      "recommended_vst": ["Sytrus (Preset: Warm Pad / Strings)", "FLEX (Preset: General MIDI Pad)", "3xOSC"],
+      "mixer_track": 1,
+      "mixer_effects": ["Fruity Parametric EQ 2 (High-pass 120 Hz)", "Fruity Reverb 2"]
+    },
+    {
+      "midi_channel_0_indexed": 1,
+      "midi_channel_1_indexed": 2,
+      "role": "melody_lead",
+      "recommended_vst": ["Sytrus (Preset: Pluck / Bell Lead)", "Harmless", "Vital"],
+      "mixer_track": 2,
+      "mixer_effects": ["Fruity Delay 3", "Fruity Chorus"]
+    },
+    {
+      "midi_channel_0_indexed": 2,
+      "midi_channel_1_indexed": 3,
+      "role": "bassline",
+      "recommended_vst": ["3xOSC (Preset: Fat Sub Bass)", "BooBass", "Sawer"],
+      "mixer_track": 3,
+      "mixer_effects": ["Fruity Fast LP (Low-pass 250 Hz)", "Soundgoodizer (Preset A)"]
+    },
+    {
+      "midi_channel_0_indexed": 9,
+      "midi_channel_1_indexed": 10,
+      "role": "drums_percussion",
+      "recommended_vst": ["FPC (General MIDI Standard Drumkit)", "Individual FL Samplers"],
+      "mixer_track": 4,
+      "mixer_effects": ["Fruity Limiter (Sidechain ducking to Bass)", "Fruity Compressor"]
+    }
+  ],
+  "master_bus": {
+    "target_lufs": -14.0,
+    "true_peak_ceiling_dbfs": -1.0,
+    "recommended_master_chain": [
+      "Fruity Parametric EQ 2 (Steep cut below 25 Hz and above 19.5 kHz)",
+      "Maximus (Multiband gentle leveling)",
+      "Fruity Limiter (Ceiling: -1.0 dB, Release: 200 ms)"
+    ]
+  }
+}

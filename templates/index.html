@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wizzard Audio Workstation 98 — Motor Procedural Content ID</title>
+  <style>
+    /* Estilo Retro PC / Windows 98 & Vintage Workstation */
+    :root {
+      --win-gray: #c0c0c0;
+      --win-light: #ffffff;
+      --win-dark: #808080;
+      --win-black: #000000;
+      --win-blue: #000080;
+      --win-blue-light: #1084d0;
+      --screen-bg: #0a110a;
+      --phosphor-green: #39ff14;
+      --phosphor-dim: #1e840a;
+      --lcd-text: #55ff55;
+      --amber: #ffb000;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #008080; /* Clásico verde azulado de Windows 95/98 */
+      color: #000000;
+      font-family: "MS Sans Serif", Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 11px;
+      min-height: 100vh;
+      padding: 16px;
+      line-height: 1.4;
+      user-select: none;
+    }
+
+    /* Ventana Principal */
+    .win-window {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--win-gray);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-black);
+      border-bottom: 2px solid var(--win-black);
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    }
+
+    /* Barra de Título */
+    .win-titlebar {
+      background: linear-gradient(90deg, var(--win-blue), var(--win-blue-light));
+      color: #ffffff;
+      padding: 3px 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .win-titlebar-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .win-title-icon {
+      width: 16px; height: 16px;
+      background: #ffffff;
+      border: 1px solid #000000;
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 10px; color: #000; font-weight: bold;
+    }
+    .win-titlebar-controls {
+      display: flex;
+      gap: 2px;
+    }
+    .win-btn-control {
+      width: 16px; height: 14px;
+      background: var(--win-gray);
+      border-top: 1px solid var(--win-light);
+      border-left: 1px solid var(--win-light);
+      border-right: 1px solid var(--win-black);
+      border-bottom: 1px solid var(--win-black);
+      color: #000000;
+      font-size: 9px;
+      font-weight: bold;
+      line-height: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .win-btn-control:active {
+      border-top: 1px solid var(--win-black);
+      border-left: 1px solid var(--win-black);
+      border-right: 1px solid var(--win-light);
+      border-bottom: 1px solid var(--win-light);
+    }
+
+    /* Barra de Menú Clásica */
+    .win-menubar {
+      display: flex;
+      padding: 3px 6px;
+      border-bottom: 1px solid var(--win-dark);
+      background: var(--win-gray);
+      gap: 12px;
+      font-size: 11px;
+    }
+    .win-menuitem {
+      cursor: pointer;
+      padding: 2px 6px;
+    }
+    .win-menuitem:hover {
+      background: var(--win-blue);
+      color: #ffffff;
+    }
+    .win-menuitem span { text-decoration: underline; }
+
+    /* Área de Trabajo */
+    .win-workspace {
+      padding: 10px;
+    }
+
+    /* Pantalla LCD / CRT del Reproductor */
+    .crt-display {
+      background: var(--screen-bg);
+      border-top: 2px solid var(--win-black);
+      border-left: 2px solid var(--win-black);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 14px;
+      position: relative;
+    }
+    .crt-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .crt-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--phosphor-dim);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      font-family: "Courier New", monospace;
+      color: var(--phosphor-green);
+      font-size: 11px;
+    }
+    .crt-title {
+      font-family: "Courier New", monospace;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 0 0 8px var(--phosphor-green);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+    }
+    .crt-details {
+      display: flex;
+      gap: 12px;
+      font-family: "Courier New", monospace;
+      font-size: 11px;
+      color: var(--amber);
+    }
+    .crt-canvas-box {
+      background: #050a05;
+      border: 1px solid var(--phosphor-dim);
+      height: 60px;
+      width: 100%;
+      margin-top: 6px;
+    }
+    #visualizerCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Medidores LED / Controles del Deck */
+    .crt-deck {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 1px dashed var(--phosphor-dim);
+      padding-left: 12px;
+    }
+    .lcd-counter {
+      background: #000;
+      border: 1px solid var(--phosphor-dim);
+      padding: 4px 8px;
+      text-align: right;
+      font-family: "Courier New", monospace;
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--phosphor-green);
+      letter-spacing: 2px;
+      text-shadow: 0 0 6px var(--phosphor-green);
+    }
+    .crt-downloads {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    /* Botones y Controles Retro */
+    .win-btn {
+      background: var(--win-gray);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-black);
+      border-bottom: 2px solid var(--win-black);
+      padding: 4px 12px;
+      font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+    }
+    .win-btn:active {
+      border-top: 2px solid var(--win-black);
+      border-left: 2px solid var(--win-black);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 5px 11px 3px 13px;
+    }
+    .win-btn-primary {
+      font-weight: bold;
+    }
+
+    /* Controles de Reproducción */
+    .transport-panel {
+      background: var(--win-gray);
+      border: 1px solid var(--win-dark);
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .progress-seek-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .win-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 18px;
+      background: #ffffff;
+      border-top: 2px solid var(--win-black);
+      border-left: 2px solid var(--win-black);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      outline: none;
+    }
+    .win-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 24px;
+      background: var(--win-gray);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-black);
+      border-bottom: 2px solid var(--win-black);
+      cursor: pointer;
+    }
+
+    /* Pestañas de Windows 95/98 */
+    .tab-strip {
+      display: flex;
+      gap: 2px;
+      padding-left: 4px;
+      border-bottom: 2px solid var(--win-light);
+      position: relative;
+      z-index: 2;
+    }
+    .tab-btn {
+      background: var(--win-gray);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-black);
+      border-bottom: none;
+      padding: 5px 14px;
+      font-size: 11px;
+      cursor: pointer;
+      position: relative;
+      top: 2px;
+    }
+    .tab-btn.active {
+      font-weight: bold;
+      background: var(--win-gray);
+      border-bottom: 2px solid var(--win-gray);
+      top: 0px;
+      padding-top: 7px;
+      z-index: 3;
+    }
+
+    /* Contenido de Pestaña */
+    .tab-pane {
+      background: var(--win-gray);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-black);
+      border-bottom: 2px solid var(--win-black);
+      padding: 16px;
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Cajas Agrupadas Clásicas (Fieldset) */
+    .win-groupbox {
+      border-top: 1px solid var(--win-dark);
+      border-left: 1px solid var(--win-dark);
+      border-right: 1px solid var(--win-light);
+      border-bottom: 1px solid var(--win-light);
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .win-legend {
+      padding: 0 4px;
+      font-weight: bold;
+      color: var(--win-blue);
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+    .form-label-retro {
+      width: 170px;
+      font-size: 11px;
+      color: #000;
+    }
+    .win-input, .win-select {
+      background: #ffffff;
+      border-top: 2px solid var(--win-black);
+      border-left: 2px solid var(--win-black);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 3px 5px;
+      font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      outline: none;
+      flex: 1;
+    }
+
+    /* Tabla Estilo Hoja de Cálculo / Explorer */
+    .win-table-box {
+      background: #ffffff;
+      border-top: 2px solid var(--win-black);
+      border-left: 2px solid var(--win-black);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      overflow-x: auto;
+      max-height: 280px;
+    }
+    table.win-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      text-align: left;
+    }
+    table.win-table th {
+      background: var(--win-gray);
+      border-top: 1px solid var(--win-light);
+      border-left: 1px solid var(--win-light);
+      border-right: 1px solid var(--win-dark);
+      border-bottom: 1px solid var(--win-dark);
+      padding: 4px 6px;
+      position: sticky;
+      top: 0;
+      font-weight: bold;
+    }
+    table.win-table td {
+      padding: 4px 6px;
+      border-bottom: 1px solid #e0e0e0;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+    table.win-table tr:hover td {
+      background: #000080;
+      color: #ffffff;
+    }
+    table.win-table tr:hover a, table.win-table tr:hover button {
+      color: #000;
+    }
+
+    /* Barra de Estado Inferior */
+    .win-statusbar {
+      display: flex;
+      background: var(--win-gray);
+      border-top: 1px solid var(--win-dark);
+      padding: 2px;
+      gap: 3px;
+      margin-top: 8px;
+    }
+    .win-statuspanel {
+      border-top: 1px solid var(--win-dark);
+      border-left: 1px solid var(--win-dark);
+      border-right: 1px solid var(--win-light);
+      border-bottom: 1px solid var(--win-light);
+      padding: 2px 6px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    /* Modal Estilo Cuadro de Diálogo Windows */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .dialog-box {
+      width: 600px;
+      max-width: 90vw;
+      background: var(--win-gray);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-black);
+      border-bottom: 2px solid var(--win-black);
+      box-shadow: 4px 4px 15px rgba(0,0,0,0.6);
+    }
+    .dialog-body {
+      padding: 12px;
+    }
+    .notepad-area {
+      background: #ffffff;
+      border-top: 2px solid var(--win-black);
+      border-left: 2px solid var(--win-black);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      font-family: "Courier New", monospace;
+      font-size: 11px;
+      height: 220px;
+      overflow-y: scroll;
+      padding: 8px;
+      white-space: pre-wrap;
+    }
+    .dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      padding: 8px 12px;
+      border-top: 1px solid var(--win-dark);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ventana Principal -->
+  <div class="win-window">
+    <!-- Barra de Título -->
+    <div class="win-titlebar">
+      <div class="win-titlebar-text">
+        <span class="win-title-icon">♫</span>
+        <span>Wizzard Audio Workstation 98 — Motor Procedural Content ID</span>
+      </div>
+      <div class="win-titlebar-controls">
+        <button class="win-btn-control" title="Minimizar">_</button>
+        <button class="win-btn-control" title="Maximizar">□</button>
+        <button class="win-btn-control" title="Cerrar">✕</button>
+      </div>
+    </div>
+
+    <!-- Menú Clásico -->
+    <div class="win-menubar">
+      <div class="win-menuitem" onclick="switchTab('tab-generate')"><span>A</span>rchivo</div>
+      <div class="win-menuitem" onclick="switchTab('tab-mixer')"><span>E</span>dición</div>
+      <div class="win-menuitem" onclick="togglePlay()"><span>R</span>eproducir</div>
+      <div class="win-menuitem" onclick="switchTab('tab-catalog')"><span>P</span>istas</div>
+      <div class="win-menuitem" onclick="switchTab('tab-legal')"><span>A</span>yuda</div>
+    </div>
+
+    <!-- Área de Trabajo -->
+    <div class="win-workspace">
+
+      <!-- Monitor CRT del Reproductor -->
+      <div class="crt-display">
+        <div class="crt-main">
+          <div class="crt-header">
+            <span>MODO: SÍNTESIS PROCEDURAL 16-BIT</span>
+            <span id="crtStatus">LISTO</span>
+          </div>
+          <div class="crt-title" id="nowTitle">Thunderstruck Velocity</div>
+          <div class="crt-details">
+            <span id="nowGenre">GÉNERO: HARD_ROCK</span>
+            <span id="nowBpm">BPM: 136</span>
+            <span id="nowLufs">LUFS: -15.69 dB</span>
+            <span id="nowISRC">ISRC: US-SHM-26-00004</span>
+          </div>
+          <div class="crt-canvas-box">
+            <canvas id="visualizerCanvas"></canvas>
+          </div>
+        </div>
+        <div class="crt-deck">
+          <div>
+            <div style="font-family: 'Courier New', monospace; font-size: 10px; color: var(--phosphor-green); margin-bottom: 2px;">TIEMPO TRANSCURRIDO</div>
+            <div class="lcd-counter" id="lcdCounter">00:00</div>
+          </div>
+          <div class="crt-downloads">
+            <a href="/audio/track_04_hard_rock.wav" class="win-btn" id="dlWav" download style="font-size: 10px; width: 100%;">💾 WAV Master</a>
+            <a href="/midi/track_04_hard_rock.mid" class="win-btn" id="dlMid" download style="font-size: 10px; width: 100%;">🎹 MIDI Track</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles de Transporte (Play, Stop, Barra de Búsqueda) -->
+      <div class="transport-panel">
+        <button class="win-btn win-btn-primary" id="btnPlay" onclick="togglePlay()" style="width: 75px;">► Play</button>
+        <button class="win-btn" onclick="stopAudio()" style="width: 65px;">■ Stop</button>
+        <div class="progress-seek-box">
+          <span style="font-family: monospace;" id="timeCurrent">0:00</span>
+          <input type="range" class="win-slider" id="seekBar" value="0" min="0" max="100" step="0.1">
+          <span style="font-family: monospace;" id="timeTotal">0:30</span>
+        </div>
+      </div>
+      <audio id="audioElement" src="/audio/track_04_hard_rock.wav"></audio>
+
+      <!-- Pestañas Organizadoras -->
+      <div class="tab-strip">
+        <button class="tab-btn active" id="btn-tab-generate" onclick="switchTab('tab-generate')">Compositor de Pistas</button>
+        <button class="tab-btn" id="btn-tab-yt" onclick="switchTab('tab-yt')">Extractor YouTube DNA</button>
+        <button class="tab-btn" id="btn-tab-mixer" onclick="switchTab('tab-mixer')">Mesa de Mezcla & Mashups</button>
+        <button class="tab-btn" id="btn-tab-catalog" onclick="switchTab('tab-catalog')">Explorador de Pistas</button>
+        <button class="tab-btn" id="btn-tab-legal" onclick="switchTab('tab-legal')">Manual Content ID</button>
+      </div>
+
+      <!-- Pestaña 1: Generador de Pistas -->
+      <div class="tab-pane active" id="tab-generate">
+        <fieldset class="win-groupbox">
+          <legend class="win-legend">Generación Algorítmica Diatónica</legend>
+          <form id="genForm">
+            <div class="form-row">
+              <label class="form-label-retro">Estilo Musical / Beat:</label>
+              <select class="win-select" id="genreSelect">
+                <option value="hard_rock" selected>🎸 Hard Rock & Heavy Riffs (136 BPM - Pentatónica Blues)</option>
+                <option value="dark_trap">😈 Dark Trap & 808 Sub (140 BPM - Modo Frigio)</option>
+                <option value="boom_bap">📻 90s Boom Bap (92 BPM - Modo Dórico)</option>
+                <option value="epic_cinematic">⚔️ Epic Cinematic (120 BPM - Menor Armónica)</option>
+                <option value="synthwave">🌆 Synthwave 80s (124 BPM - Dórica)</option>
+                <option value="lofi_chill">☕ Lofi Chillhop (82 BPM - Jazz Chords)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="form-label-retro">Longitud del Patrón:</label>
+              <select class="win-select" id="barsSelect">
+                <option value="8">8 Compases (~15 segs)</option>
+                <option value="16" selected>16 Compases (~30-35 segs)</option>
+                <option value="32">32 Compases (~1 minuto)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="form-label-retro">Título de la Obra:</label>
+              <input type="text" class="win-input" id="titleInput" placeholder="Ej: Iron Fury 1998 (dejar vacío para automático)">
+            </div>
+            <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+              <button type="submit" class="win-btn win-btn-primary" id="btnGenerate" style="padding: 6px 20px;">
+                ⚙ Generar Pista Inédita
+              </button>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+
+      <!-- Pestaña 2: YouTube DNA -->
+      <div class="tab-pane" id="tab-yt">
+        <fieldset class="win-groupbox">
+          <legend class="win-legend">Extractor de Características Acústicas (Sin Sampleo)</legend>
+          <p style="margin-bottom: 10px; color: #444;">
+            Descarga e inspecciona los primeros 30s del video para extraer BPM (autocorrelación) y tonalidad (FFT Chromagram).
+            Compone un tema 100% nuevo que pasa Content ID sin infracciones.
+          </p>
+          <form id="ytForm">
+            <div class="form-row">
+              <label class="form-label-retro">Enlace de YouTube:</label>
+              <input type="url" class="win-input" id="ytUrlInput" placeholder="https://www.youtube.com/watch?v=..." required>
+            </div>
+            <div class="form-row">
+              <label class="form-label-retro">Título para la Nueva Pista:</label>
+              <input type="text" class="win-input" id="ytTitleInput" placeholder="Ej: Obra Inspirada en Canal X">
+            </div>
+            <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+              <span id="ytFeedback" style="font-family: monospace; font-weight: bold; color: var(--win-blue);"></span>
+              <button type="submit" class="win-btn win-btn-primary" id="btnYtGenerate" style="padding: 6px 20px;">
+                ⚡ Analizar y Componer Tema Original
+              </button>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+
+      <!-- Pestaña 3: Mezclador & Mashup -->
+      <div class="tab-pane" id="tab-mixer">
+        <fieldset class="win-groupbox">
+          <legend class="win-legend">Fusión Multipista (DJ Crossfade & Stems Mashup)</legend>
+          <form id="mixForm">
+            <div class="form-row">
+              <label class="form-label-retro">Deck A (Pista 1):</label>
+              <select class="win-select" id="mixTrackA" required></select>
+            </div>
+            <div class="form-row">
+              <label class="form-label-retro">Deck B (Pista 2):</label>
+              <select class="win-select" id="mixTrackB" required></select>
+            </div>
+            <div class="form-row">
+              <label class="form-label-retro">Modo Operativo:</label>
+              <select class="win-select" id="mixMode">
+                <option value="crossfade" selected>DJ Crossfade (Transición de Potencia Constante)</option>
+                <option value="mashup">Remix Híbrido (Batería/808 de A + Armonía/Lead de B)</option>
+                <option value="blend">Mezcla Simultánea (Dual Deck Balance)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="form-label-retro" id="mixParamLabel">Parámetro de Mezcla:</label>
+              <input type="range" class="win-slider" id="mixParamSlider" min="1.0" max="8.0" step="0.5" value="4.0">
+            </div>
+            <div class="form-row">
+              <label class="form-label-retro">Título de la Mezcla:</label>
+              <input type="text" class="win-input" id="mixTitle" placeholder="Ej: Rock Meets Trap Medley">
+            </div>
+            <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+              <button type="submit" class="win-btn win-btn-primary" id="btnMix" style="padding: 6px 20px;">
+                🎛 Procesar Mezcla
+              </button>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+
+      <!-- Pestaña 4: Explorador de Catálogo -->
+      <div class="tab-pane" id="tab-catalog">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <strong>Lista de Producciones Registradas</strong>
+          <span id="trackCountBadge" style="color: var(--win-dark);">0 elementos</span>
+        </div>
+        <div class="win-table-box">
+          <table class="win-table">
+            <thead>
+              <tr>
+                <th style="width: 45px;">Play</th>
+                <th>Nombre de la Pista</th>
+                <th>Estilo</th>
+                <th>Código ISRC</th>
+                <th>BPM</th>
+                <th>Tiempo</th>
+                <th>LUFS</th>
+                <th>Contrato</th>
+                <th>Archivos</th>
+              </tr>
+            </thead>
+            <tbody id="tracksTableBody">
+              <!-- Filas dinámicas -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pestaña 5: Legal & Content ID -->
+      <div class="tab-pane" id="tab-legal">
+        <fieldset class="win-groupbox">
+          <legend class="win-legend">Normas de Monetización Content ID</legend>
+          <ul style="padding-left: 20px; line-height: 1.6;">
+            <li><strong>Regla de Oro:</strong> Prohibido usar loops de melodías o samples de terceros (Splice, Cymatics, Looperman).</li>
+            <li><strong>Composición Matemática:</strong> Cada nota es generada mediante matrices de teoría musical y renderizada por síntesis procedural.</li>
+            <li><strong>Estándar de Sonoridad:</strong> Salida a -14 LUFS con techo True Peak de -1.0 dBFS para evitar distorsión en transcodificación de YouTube.</li>
+            <li><strong>Trazabilidad:</strong> Cada tema cuenta con código ISRC ISO 3901 y ficha de catalogación en JSON/CSV lista para distribuidoras (Identifyy, Soundrop, Songtradr).</li>
+          </ul>
+        </fieldset>
+      </div>
+
+      <!-- Barra de Estado Inferior -->
+      <div class="win-statusbar">
+        <div class="win-statuspanel" style="flex: 2;">ESTADO: MOTOR ACTIVO Y CERTIFICADO</div>
+        <div class="win-statuspanel">FRECUENCIA: 44,100 Hz</div>
+        <div class="win-statuspanel">RESOLUCIÓN: 16-BIT PCM</div>
+        <div class="win-statuspanel" id="statusTrackCount">PISTAS: 8</div>
+        <div class="win-statuspanel">FL STUDIO: COMPATIBLE</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Cuadro de Diálogo para Contrato de Licencia -->
+  <div class="modal-overlay" id="contractModal">
+    <div class="dialog-box">
+      <div class="win-titlebar">
+        <span>Contrato de Licencia Musical — Bloc de Notas</span>
+        <button class="win-btn-control" onclick="closeModal()">✕</button>
+      </div>
+      <div class="dialog-body">
+        <div class="notepad-area" id="modalContractText">Cargando...</div>
+      </div>
+      <div class="dialog-footer">
+        <button class="win-btn" onclick="copyContract()">Copiar al Portapapeles</button>
+        <button class="win-btn" onclick="closeModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audioElement');
+    const btnPlay = document.getElementById('btnPlay');
+    const seekBar = document.getElementById('seekBar');
+    const timeCurrent = document.getElementById('timeCurrent');
+    const timeTotal = document.getElementById('timeTotal');
+    const lcdCounter = document.getElementById('lcdCounter');
+    const nowTitle = document.getElementById('nowTitle');
+    const nowGenre = document.getElementById('nowGenre');
+    const nowBpm = document.getElementById('nowBpm');
+    const nowLufs = document.getElementById('nowLufs');
+    const nowISRC = document.getElementById('nowISRC');
+    const crtStatus = document.getElementById('crtStatus');
+    const dlWav = document.getElementById('dlWav');
+    const dlMid = document.getElementById('dlMid');
+    const tracksTableBody = document.getElementById('tracksTableBody');
+    const trackCountBadge = document.getElementById('trackCountBadge');
+    const statusTrackCount = document.getElementById('statusTrackCount');
+    const contractModal = document.getElementById('contractModal');
+    const modalContractText = document.getElementById('modalContractText');
+
+    // Manejo de Pestañas
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      
+      const targetPane = document.getElementById(tabId);
+      const targetBtn = document.getElementById('btn-' + tabId);
+      if (targetPane) targetPane.classList.add('active');
+      if (targetBtn) targetBtn.classList.add('active');
+    }
+
+    // Visualizador CRT en Fósforo Verde
+    let audioCtx, analyser, source, canvas, ctx;
+    let visualizerInitialized = false;
+
+    function initVisualizer() {
+      if (visualizerInitialized) return;
+      try {
+        canvas = document.getElementById('visualizerCanvas');
+        ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth * window.devicePixelRatio || 500;
+        canvas.height = canvas.offsetHeight * window.devicePixelRatio || 60;
+
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 128;
+        source = audioCtx.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        visualizerInitialized = true;
+        drawVisualizer();
+      } catch (e) {
+        console.warn('Web Audio:', e);
+      }
+    }
+
+    function drawVisualizer() {
+      requestAnimationFrame(drawVisualizer);
+      if (!analyser || !ctx) return;
+
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      analyser.getByteFrequencyData(dataArray);
+
+      ctx.fillStyle = '#050a05';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = (canvas.width / bufferLength) * 2.5;
+      let x = 0;
+
+      for (let i = 0; i < bufferLength; i++) {
+        const barHeight = (dataArray[i] / 255) * canvas.height;
+        // Efecto fósforo verde retro con líneas de barrido
+        ctx.fillStyle = '#39ff14';
+        ctx.fillRect(x, canvas.height - barHeight, barWidth - 2, barHeight);
+        x += barWidth;
+      }
+    }
+
+    function togglePlay() {
+      initVisualizer();
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (audio.paused) {
+        audio.play();
+        btnPlay.textContent = '❚❚ Pause';
+        crtStatus.textContent = 'REPRODUCIENDO';
+      } else {
+        audio.pause();
+        btnPlay.textContent = '► Play';
+        crtStatus.textContent = 'PAUSA';
+      }
+    }
+
+    function stopAudio() {
+      audio.pause();
+      audio.currentTime = 0;
+      btnPlay.textContent = '► Play';
+      crtStatus.textContent = 'DETENIDO';
+      seekBar.value = 0;
+      lcdCounter.textContent = '00:00';
+      timeCurrent.textContent = '0:00';
+    }
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        seekBar.value = (audio.currentTime / audio.duration) * 100;
+        const cur = formatTime(audio.currentTime);
+        timeCurrent.textContent = cur;
+        lcdCounter.textContent = cur.padStart(5, '0');
+      }
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      timeTotal.textContent = formatTime(audio.duration);
+    });
+
+    seekBar.addEventListener('input', () => {
+      if (audio.duration) {
+        audio.currentTime = (seekBar.value / 100) * audio.duration;
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      stopAudio();
+    });
+
+    function formatTime(secs) {
+      if (isNaN(secs)) return '0:00';
+      const m = Math.floor(secs / 60);
+      const s = Math.floor(secs % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function playTrack(track) {
+      initVisualizer();
+      nowTitle.textContent = track.title;
+      nowGenre.textContent = `GÉNERO: ${(track.genre || '').toUpperCase()}`;
+      nowBpm.textContent = `BPM: ${track.bpm}`;
+      nowLufs.textContent = `LUFS: ${track.estimated_lufs || -14.0} dB`;
+      nowISRC.textContent = `ISRC: ${track.isrc}`;
+
+      dlWav.href = `/audio/${track.audio_filename}`;
+      dlMid.href = `/midi/${track.midi_filename}`;
+
+      audio.src = `/audio/${track.audio_filename}`;
+      audio.play().then(() => {
+        btnPlay.textContent = '❚❚ Pause';
+        crtStatus.textContent = 'REPRODUCIENDO';
+      }).catch(err => console.log('Autoplay:', err));
+    }
+
+    // Cargar Catálogo de Pistas
+    async function loadCatalog() {
+      try {
+        const res = await fetch('/api/tracks');
+        const data = await res.json();
+        if (data.success) {
+          renderTable(data.tracks);
+          updateMixerDropdowns(data.tracks);
+          trackCountBadge.textContent = `${data.tracks.length} elementos`;
+          statusTrackCount.textContent = `PISTAS: ${data.tracks.length}`;
+        }
+      } catch (err) {
+        console.error('Error cargando catálogo:', err);
+      }
+    }
+
+    function updateMixerDropdowns(tracks) {
+      const selectA = document.getElementById('mixTrackA');
+      const selectB = document.getElementById('mixTrackB');
+      if (!selectA || !selectB) return;
+
+      const prevA = selectA.value;
+      const prevB = selectB.value;
+      
+      selectA.innerHTML = '';
+      selectB.innerHTML = '';
+      
+      tracks.forEach(t => {
+        const optA = document.createElement('option');
+        optA.value = t.isrc;
+        optA.textContent = `${t.title} (${(t.genre || '').toUpperCase()} - ${t.bpm} BPM)`;
+        selectA.appendChild(optA);
+        
+        const optB = document.createElement('option');
+        optB.value = t.isrc;
+        optB.textContent = `${t.title} (${(t.genre || '').toUpperCase()} - ${t.bpm} BPM)`;
+        selectB.appendChild(optB);
+      });
+      
+      if (prevA) selectA.value = prevA;
+      if (prevB) selectB.value = prevB;
+      else if (tracks.length >= 2) selectB.selectedIndex = 1;
+    }
+
+    function renderTable(tracks) {
+      tracksTableBody.innerHTML = '';
+      tracks.slice().reverse().forEach(t => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <button class="win-btn" style="padding: 1px 6px;" onclick='playTrack(${JSON.stringify(t)})'>►</button>
+          </td>
+          <td><strong>${t.title}</strong></td>
+          <td>${(t.genre || '').toUpperCase()}</td>
+          <td><code style="font-family: monospace;">${t.isrc}</code></td>
+          <td>${t.bpm}</td>
+          <td>${t.duration_sec}s</td>
+          <td>${t.estimated_lufs || -14.0} dB</td>
+          <td>
+            <button class="win-btn" style="padding: 1px 6px;" onclick="openLicenseModal('${t.isrc}')">Doc</button>
+          </td>
+          <td>
+            <div style="display: flex; gap: 3px;">
+              <a href="/audio/${t.audio_filename}" class="win-btn" style="padding: 1px 5px;" download>WAV</a>
+              <a href="/midi/${t.midi_filename}" class="win-btn" style="padding: 1px 5px;" download>MID</a>
+              <button class="win-btn" style="padding: 1px 5px;" onclick="downloadFLPackage('${t.isrc}')">FL Studio</button>
+            </div>
+          </td>
+        `;
+        tracksTableBody.appendChild(tr);
+      });
+    }
+
+    // Generador Form
+    document.getElementById('genForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnGenerate');
+      btn.disabled = true;
+      btn.textContent = 'Procesando...';
+
+      const payload = {
+        genre: document.getElementById('genreSelect').value,
+        bars: parseInt(document.getElementById('barsSelect').value),
+        title: document.getElementById('titleInput').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          await loadCatalog();
+          playTrack(data.track);
+          document.getElementById('titleInput').value = '';
+          switchTab('tab-catalog');
+        }
+      } catch (err) {
+        alert('Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '⚙ Generar Pista Inédita';
+      }
+    });
+
+    // YouTube DNA
+    document.getElementById('ytForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnYtGenerate');
+      const feedback = document.getElementById('ytFeedback');
+      btn.disabled = true;
+      btn.textContent = 'Descargando y Analizando...';
+      feedback.textContent = 'Analizando espectro acústico...';
+
+      const payload = {
+        url: document.getElementById('ytUrlInput').value.trim(),
+        title: document.getElementById('ytTitleInput').value.trim(),
+        bars: 16
+      };
+
+      try {
+        const res = await fetch('/api/youtube-dna', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          feedback.textContent = `✓ Detectado: ${data.dna.detected_key} | ${data.dna.detected_bpm} BPM.`;
+          await loadCatalog();
+          playTrack(data.track);
+          document.getElementById('ytUrlInput').value = '';
+          document.getElementById('ytTitleInput').value = '';
+          switchTab('tab-catalog');
+        } else {
+          feedback.textContent = 'Error: ' + data.error;
+        }
+      } catch (err) {
+        feedback.textContent = 'Error: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '⚡ Analizar y Componer Tema Original';
+      }
+    });
+
+    // Mezclador
+    document.getElementById('mixForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnMix');
+      btn.disabled = true;
+      btn.textContent = 'Mezclando...';
+
+      const mode = document.getElementById('mixMode').value;
+      const paramVal = parseFloat(document.getElementById('mixParamSlider').value);
+
+      const payload = {
+        isrc_a: document.getElementById('mixTrackA').value,
+        isrc_b: document.getElementById('mixTrackB').value,
+        mode: mode,
+        balance: mode === 'blend' ? paramVal : 0.5,
+        crossfade_sec: mode === 'crossfade' ? paramVal : 4.0,
+        title: document.getElementById('mixTitle').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/mix-tracks', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          await loadCatalog();
+          playTrack(data.track);
+          document.getElementById('mixTitle').value = '';
+          switchTab('tab-catalog');
+        } else {
+          alert('Error: ' + data.error);
+        }
+      } catch (err) {
+        alert('Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🎛 Procesar Mezcla';
+      }
+    });
+
+    async function downloadFLPackage(isrc) {
+      try {
+        const res = await fetch(`/api/flstudio-package/${isrc}`);
+        const data = await res.json();
+        if (data.success && data.zip_url) {
+          const a = document.createElement('a');
+          a.href = data.zip_url;
+          a.download = `${data.project_name}_FLStudio_Project.zip`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    }
+
+    async function openLicenseModal(isrc) {
+      contractModal.style.display = 'flex';
+      modalContractText.textContent = 'Cargando documento...';
+      try {
+        const res = await fetch(`/api/license/${isrc}?tier=premium_wav`);
+        const data = await res.json();
+        if (data.success) {
+          modalContractText.textContent = data.contract;
+        }
+      } catch (err) {
+        modalContractText.textContent = 'Error: ' + err.message;
+      }
+    }
+
+    function closeModal() {
+      contractModal.style.display = 'none';
+    }
+
+    function copyContract() {
+      navigator.clipboard.writeText(modalContractText.textContent).then(() => {
+        alert('Documento copiado al portapapeles.');
+      });
+    }
+
+    loadCatalog();
+  </script>
+</body>
+</html>
