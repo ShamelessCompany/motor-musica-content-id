@@ -1,0 +1,33 @@
+{
+  "isrc": "US-SHM-26-00028",
+  "kind": "generate",
+  "title": "Raw Vinyl Boom Bap",
+  "bpm": 92,
+  "rack": {
+    "lead": "piano",
+    "pad": "brass_section",
+    "bass": "upright_pluck",
+    "drums": "lofi_kit"
+  },
+  "volumes": {
+    "lead": 1.0,
+    "pad": 1.0,
+    "bass": 1.0,
+    "drums": 1.0
+  },
+  "muted": {
+    "lead": false,
+    "pad": false,
+    "bass": false,
+    "drums": false
+  },
+  "transpose": 5,
+  "target_bpm": 100,
+  "melody_variation": 0,
+  "version": 1,
+  "genre": "boom_bap",
+  "seed": 1056910389,
+  "bars": 64,
+  "plan": null,
+  "source_keys": []
+}

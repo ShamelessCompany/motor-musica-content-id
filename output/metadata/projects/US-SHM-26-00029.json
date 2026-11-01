@@ -1,0 +1,33 @@
+{
+  "isrc": "US-SHM-26-00029",
+  "kind": "generate",
+  "title": "VVS Diamond Frost",
+  "bpm": 140,
+  "rack": {
+    "lead": "fm_bell",
+    "pad": "choir",
+    "bass": "sub_808",
+    "drums": "trap_808_kit"
+  },
+  "volumes": {
+    "lead": 1.0,
+    "pad": 1.0,
+    "bass": 1.0,
+    "drums": 1.0
+  },
+  "muted": {
+    "lead": false,
+    "pad": false,
+    "bass": false,
+    "drums": false
+  },
+  "transpose": -5,
+  "target_bpm": 131,
+  "melody_variation": 0,
+  "version": 1,
+  "genre": "dark_trap",
+  "seed": 2098442161,
+  "bars": 64,
+  "plan": null,
+  "source_keys": []
+}

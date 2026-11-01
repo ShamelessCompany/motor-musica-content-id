@@ -1,0 +1,33 @@
+{
+  "isrc": "US-SHM-26-00031",
+  "kind": "generate",
+  "title": "Electric Wasteland Riff",
+  "bpm": 136,
+  "rack": {
+    "lead": "electric_clean",
+    "pad": "distortion_guitar",
+    "bass": "electric_bass",
+    "drums": "acoustic_kit"
+  },
+  "volumes": {
+    "lead": 1.0,
+    "pad": 1.0,
+    "bass": 1.0,
+    "drums": 1.0
+  },
+  "muted": {
+    "lead": false,
+    "pad": false,
+    "bass": false,
+    "drums": false
+  },
+  "transpose": -6,
+  "target_bpm": 111,
+  "melody_variation": 0,
+  "version": 1,
+  "genre": "hard_rock",
+  "seed": 1851467394,
+  "bars": 64,
+  "plan": null,
+  "source_keys": []
+}

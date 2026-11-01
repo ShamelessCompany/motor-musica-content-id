@@ -1,0 +1,33 @@
+{
+  "isrc": "US-SHM-26-00013",
+  "kind": "generate",
+  "title": "Echoes of Valhalla",
+  "bpm": 120,
+  "rack": {
+    "lead": "violin",
+    "pad": "string_ensemble",
+    "bass": "cello",
+    "drums": "acoustic_kit"
+  },
+  "volumes": {
+    "lead": 1.0,
+    "pad": 1.0,
+    "bass": 1.0,
+    "drums": 1.0
+  },
+  "muted": {
+    "lead": false,
+    "pad": false,
+    "bass": false,
+    "drums": false
+  },
+  "transpose": 4,
+  "target_bpm": 109,
+  "melody_variation": 0,
+  "version": 1,
+  "genre": "epic_cinematic",
+  "seed": 968489208,
+  "bars": 32,
+  "plan": null,
+  "source_keys": []
+}

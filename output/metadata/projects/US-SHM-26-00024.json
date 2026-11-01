@@ -1,0 +1,33 @@
+{
+  "isrc": "US-SHM-26-00024",
+  "kind": "generate",
+  "title": "Cassette Tape Memories",
+  "bpm": 124,
+  "rack": {
+    "lead": "supersaw",
+    "pad": "warm_pad",
+    "bass": "acid_303",
+    "drums": "acoustic_kit"
+  },
+  "volumes": {
+    "lead": 1.0,
+    "pad": 1.0,
+    "bass": 1.0,
+    "drums": 1.0
+  },
+  "muted": {
+    "lead": false,
+    "pad": false,
+    "bass": false,
+    "drums": false
+  },
+  "transpose": 0,
+  "target_bpm": 108,
+  "melody_variation": 0,
+  "version": 1,
+  "genre": "synthwave",
+  "seed": 541901838,
+  "bars": 64,
+  "plan": null,
+  "source_keys": []
+}

@@ -1,0 +1,33 @@
+{
+  "isrc": "US-SHM-26-00022",
+  "kind": "generate",
+  "title": "Cortege of Kings",
+  "bpm": 140,
+  "rack": {
+    "lead": "fm_bell",
+    "pad": "choir",
+    "bass": "sub_808",
+    "drums": "trap_808_kit"
+  },
+  "volumes": {
+    "lead": 1.0,
+    "pad": 1.0,
+    "bass": 1.0,
+    "drums": 1.0
+  },
+  "muted": {
+    "lead": false,
+    "pad": false,
+    "bass": false,
+    "drums": false
+  },
+  "transpose": -2,
+  "target_bpm": 174,
+  "melody_variation": 0,
+  "version": 1,
+  "genre": "dark_trap",
+  "seed": 17242651,
+  "bars": 64,
+  "plan": null,
+  "source_keys": []
+}

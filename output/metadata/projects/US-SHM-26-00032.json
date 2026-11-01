@@ -1,0 +1,33 @@
+{
+  "isrc": "US-SHM-26-00032",
+  "kind": "generate",
+  "title": "Grim Reaper Glide",
+  "bpm": 140,
+  "rack": {
+    "lead": "fm_bell",
+    "pad": "choir",
+    "bass": "sub_808",
+    "drums": "trap_808_kit"
+  },
+  "volumes": {
+    "lead": 1.0,
+    "pad": 1.0,
+    "bass": 1.0,
+    "drums": 1.0
+  },
+  "muted": {
+    "lead": false,
+    "pad": false,
+    "bass": false,
+    "drums": false
+  },
+  "transpose": 2,
+  "target_bpm": 143,
+  "melody_variation": 0,
+  "version": 1,
+  "genre": "dark_trap",
+  "seed": 1245836752,
+  "bars": 64,
+  "plan": null,
+  "source_keys": []
+}
