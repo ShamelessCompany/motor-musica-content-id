@@ -2,7 +2,7 @@
 
 Motor algorítmico en Python para la composición y renderizado de música instrumental original, diseñado específicamente para cumplir con las políticas estrictas de monetización de **YouTube Content ID** (Identifyy, Soundrop, Songtradr, TuneCore) y la creación de Beats para Raperos con licencias comerciales.
 
-Ubicación del proyecto: `D:\Programacion\motor-musica-content-id`
+Ubicación del proyecto: `D:\ProyectosProgramacion\motor-musica-content-id`
 
 ---
 
@@ -20,6 +20,32 @@ Ubicación del proyecto: `D:\Programacion\motor-musica-content-id`
 
 ---
 
+## Fusión Armónica Multi-Link (nuevo)
+
+Pega uno o varios links y el motor compone **un tema original** con el tempo y la tonalidad de las
+fuentes: una sección por link, unidas por dominantes que avanzan por cuartas en el círculo de
+quintas, y un leitmotiv propio que recorre todo el tema. El estilo por defecto aplica los principios
+que Laura Shigihara describió para la música de *Plants vs. Zombies* (macabro + tierno + humor,
+swing de big band). Cada tema sale con un reporte de checks (huella tipo Content ID, similitud
+tonal, -14 LUFS). Detalles: [`docs/FUSION_ARMONICA.md`](docs/FUSION_ARMONICA.md).
+
+**Rack de instrumentos:** 31 sintetizadores procedurales (guitarras acústica, eléctrica y
+distorsionada, violín, chelo, cuerdas, piano, arpa, marimba, metales, supersaw, pulso 8-bit,
+celesta FM, coro, 808, bajo ácido, kits acústico/8-bit/trap/lo-fi…) y 9 paquetes de sonido de un
+clic. Se eligen a mano o automáticamente según el timbre de los temas analizados. Detalles:
+[`docs/RACK_INSTRUMENTOS.md`](docs/RACK_INSTRUMENTOS.md).
+
+## Workflow rápido: crear en 3 pasos y editar en la app (nuevo)
+
+La app abre en **★ Crear Tema Rápido**: (1) links/archivos o un estilo sin fuente, (2) un paquete de
+sonido, (3) duración y **CREAR**. Después, **✎ Editar Tema** permite cambiar cada instrumento,
+volumen y silencio por pista, transponer, cambiar el tempo y pedir una melodía nueva, viendo el
+piano roll; cada cambio se guarda como versión nueva o como tema nuevo y vuelve a pasar los checks.
+Guía completa (incluye plugins gratuitos y legales para seguir en FL Studio):
+[`docs/GUIA_WORKFLOW.md`](docs/GUIA_WORKFLOW.md).
+
+---
+
 ## 2. Requisitos Previos e Instalación
 
 ### Requisitos del Sistema
@@ -31,7 +57,7 @@ Ubicación del proyecto: `D:\Programacion\motor-musica-content-id`
 
 1. **Abrir terminal en la carpeta del proyecto:**
    ```powershell
-   cd D:\Programacion\motor-musica-content-id
+   cd D:\ProyectosProgramacion\motor-musica-content-id
    ```
 
 2. **Crear y activar un entorno virtual (recomendado):**
@@ -62,6 +88,7 @@ python app.py
 Abre en tu navegador: **`http://127.0.0.1:5055`**
 
 ### Pestañas y Funcionalidades:
+- **★ Crear Tema Rápido / ✎ Editar Tema / ♫ Mis Temas:** el flujo principal (ver [`docs/GUIA_WORKFLOW.md`](docs/GUIA_WORKFLOW.md)). El resto de pestañas quedan como *Avanzado*.
 - **🎛️ Compositor Procedural:** Selector de géneros (Rock, Trap, Boom Bap, Cinematic, Synthwave, Lofi), afinación base, escala, tempo y complejidad rítmica.
 - **🧬 YouTube DNA a Canción Original:** Convierte cualquier link de YouTube en una composición 100% original analizando BPM y tonalidad espectral (cero samples del audio original, inmune a Content ID).
 - **🎚️ Mezclador Multi-Pista:** Selector de pistas para mezclas estilo DJ (Crossfade de igual potencia matemática $\cos/\sin$), Mashups de Stems (mezcla de bases y melodías de diferentes temas) y Dual Deck Blend.
@@ -100,14 +127,14 @@ Para verificar la integridad matemática y técnica de todo el motor:
 python -m unittest discover -s tests -t . -v
 ```
 
-Resultado esperado: 18 tests ejecutados con `OK`.
+Resultado esperado: 51 tests ejecutados con `OK`.
 
 ---
 
 ## 7. Estructura del Proyecto
 
 ```
-D:\Programacion\motor-musica-content-id/
+D:\ProyectosProgramacion\motor-musica-content-id/
 ├── README.md                      # Documentación completa de instalación y uso
 ├── requirements.txt               # Dependencias (mido, numpy, Flask)
 ├── .gitignore                     # Exclusión de binarios pesados y venv

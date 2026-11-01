@@ -497,3 +497,65 @@ def _populate_midi_tracks(
             current_time_sec = msg_sec
             track.append(Message(m_type, note=pitch, velocity=vel, time=ticks, channel=ch))
         track.append(MetaMessage("end_of_track", time=0))
+
+
+def build_bundle_from_events(
+    events: List[NoteEvent],
+    profile: MusicalProfile,
+    bpm: int,
+    bars: int,
+    duration_sec: float,
+    output_mid_path: Optional[str] = None,
+    programs: Optional[Dict[str, int]] = None,
+) -> MidiTrackBundle:
+    """Empaqueta eventos ya compuestos en un MIDI Format 1 con el mismo ruteo de canales.
+
+    Lo usan los compositores que no salen de generate_track_midi (p. ej. la fusion
+    armonica multi-link) para conservar Canal 0/1/2/9 y la compatibilidad con FL Studio.
+    """
+    programs = programs or {"chords": 89, "melody": 81, "bass": 38}
+    mid = MidiFile(type=1)
+
+    track_tempo = MidiTrack()
+    track_tempo.append(MetaMessage("track_name", name=f"{profile.name} - Conductor", time=0))
+    track_tempo.append(MetaMessage("set_tempo", tempo=mido.bpm2tempo(bpm), time=0))
+    track_tempo.append(MetaMessage("time_signature", numerator=4, denominator=4, time=0))
+    track_tempo.append(MetaMessage("end_of_track", time=0))
+    mid.tracks.append(track_tempo)
+
+    for name, label, channel in (
+        ("chords", "Chords & Pads", 0),
+        ("melody", "Lead & Arp", 1),
+        ("bass", "Bassline", 2),
+    ):
+        track = MidiTrack()
+        track.append(MetaMessage("track_name", name=label, time=0))
+        track.append(Message("program_change", channel=channel, program=programs[name], time=0))
+        mid.tracks.append(track)
+    track_drums = MidiTrack()
+    track_drums.append(MetaMessage("track_name", name="Drums", time=0))
+    mid.tracks.append(track_drums)
+
+    _populate_midi_tracks(mid, events, bpm, mid.ticks_per_beat)
+    if output_mid_path:
+        mid.save(output_mid_path)
+
+    return MidiTrackBundle(
+        profile=profile,
+        bars=bars,
+        bpm=bpm,
+        duration_sec=duration_sec,
+        midi_file=mid,
+        events=list(events),
+    )
+
+
+def apply_programs(mid: MidiFile, programs: Dict[str, int]) -> None:
+    """Cambia los program_change de las pistas chords/melody/bass (canales 0/1/2) in-place."""
+    channel_track = {0: "chords", 1: "melody", 2: "bass"}
+    for track in mid.tracks:
+        for i, msg in enumerate(track):
+            if msg.type == "program_change" and msg.channel in channel_track:
+                name = channel_track[msg.channel]
+                if name in programs:
+                    track[i] = msg.copy(program=programs[name])

@@ -457,6 +457,238 @@
       padding: 8px 12px;
       border-top: 1px solid var(--win-dark);
     }
+    /* Fusión Armónica Multi-Link */
+    .fusion-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 12px;
+    }
+    @media (max-width: 760px) {
+      .fusion-grid { grid-template-columns: 1fr; }
+      .fusion-grid > *, .win-groupbox, .win-select { min-width: 0; max-width: 100%; }
+      .crt-display { grid-template-columns: 1fr; }
+      .crt-deck { border-left: none; padding-left: 0; }
+      .tab-strip, .win-statusbar { flex-wrap: wrap; }
+      .form-row { flex-wrap: wrap; }
+      .form-label-retro { width: 100%; }
+    }
+    textarea.win-input {
+      resize: vertical;
+      min-height: 78px;
+      font-family: "Courier New", monospace;
+      user-select: text;
+    }
+    .crt-panel {
+      background: var(--screen-bg);
+      border-top: 2px solid var(--win-black);
+      border-left: 2px solid var(--win-black);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 8px;
+      font-family: "Courier New", monospace;
+      color: var(--phosphor-green);
+      font-size: 11px;
+    }
+    .crt-panel-title {
+      border-bottom: 1px dashed var(--phosphor-dim);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    #circleCanvas {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-height: 260px;
+      display: block;
+      margin: 0 auto;
+    }
+    .arrange-strip {
+      display: flex;
+      height: 34px;
+      background: #000;
+      border: 1px solid var(--phosphor-dim);
+      margin: 6px 0;
+      overflow: hidden;
+    }
+    .arrange-block {
+      border-right: 1px solid #000;
+      padding: 2px 3px;
+      font-size: 9px;
+      line-height: 1.2;
+      overflow: hidden;
+      white-space: nowrap;
+      color: #000;
+    }
+    .arrange-block.intro, .arrange-block.cierre { background: var(--phosphor-dim); color: #d8ffd0; }
+    .arrange-block.tema { background: var(--phosphor-green); }
+    .arrange-block.puente { background: var(--amber); }
+    .check-list { list-style: none; max-height: 180px; overflow-y: auto; }
+    .check-list li { padding: 1px 0; white-space: normal; }
+    .check-ok { color: var(--phosphor-green); }
+    .check-fail { color: #ff5555; }
+    .check-verdict { font-weight: bold; font-size: 13px; margin-bottom: 4px; text-shadow: 0 0 6px currentColor; }
+    /* Rack de Instrumentos */
+    .rack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .rack-module {
+      background: #2b2b2b;
+      border-top: 2px solid #5a5a5a;
+      border-left: 2px solid #5a5a5a;
+      border-right: 2px solid #000;
+      border-bottom: 2px solid #000;
+      padding: 8px;
+      color: #ddd;
+      position: relative;
+    }
+    .rack-module::before, .rack-module::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ccc, #555);
+    }
+    .rack-module::before { left: 6px; }
+    .rack-module::after { right: 6px; }
+    .rack-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin: 0 12px 6px;
+      font-size: 10px;
+      color: #f0f0f0;
+    }
+    .rack-led {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #3a0000; border: 1px solid #000;
+    }
+    .rack-led.on { background: #ff3b3b; box-shadow: 0 0 6px #ff3b3b; }
+    .rack-lcd {
+      background: var(--screen-bg);
+      border: 1px solid #000;
+      font-family: "Courier New", monospace;
+      color: var(--phosphor-green);
+      padding: 5px 6px;
+      min-height: 54px;
+      margin: 6px 0;
+      font-size: 10px;
+    }
+    .rack-lcd strong { color: #fff; text-shadow: 0 0 6px var(--phosphor-green); font-size: 12px; }
+    .rack-lcd .rack-meta { color: var(--amber); margin-top: 3px; }
+    .rack-controls { display: flex; gap: 6px; }
+    .rack-controls .win-select { min-width: 0; }
+    .rack-summary { margin-top: 6px; }
+    @media (max-width: 760px) {
+      .rack-grid { grid-template-columns: 1fr; }
+    }
+    /* --- Flujo rapido (asistente de 3 pasos) y editor de temas --- */
+    .tab-sep {
+      align-self: center;
+      font-size: 10px;
+      color: var(--win-dark);
+      padding: 0 4px 0 10px;
+      letter-spacing: 1px;
+    }
+    .tab-btn.tab-main { font-weight: bold; }
+    .wizard-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .wizard-step { margin: 0; min-width: 0; }
+    .step-num {
+      display: inline-block;
+      background: var(--win-blue);
+      color: #fff;
+      font-weight: bold;
+      padding: 0 6px;
+      margin-right: 4px;
+    }
+    .choice-row { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+    .choice-btn { flex: 1 1 0; min-width: 0; text-align: left; padding: 5px 8px; }
+    .choice-btn.pressed, .pack-btn.pressed {
+      border-color: var(--win-black) var(--win-light) var(--win-light) var(--win-black);
+      background: #a8a8a8;
+      font-weight: bold;
+    }
+    .pack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+    .pack-btn {
+      text-align: left;
+      padding: 4px 6px;
+      font-size: 11px;
+      line-height: 1.25;
+      white-space: normal;
+      min-width: 0;
+    }
+    .pack-btn small { display: block; color: #333; font-weight: normal; }
+    .wizard-go { width: 100%; padding: 10px 6px; font-size: 14px; margin-top: 8px; }
+    .result-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .result-actions .win-btn { font-size: 11px; }
+    .hint { color: #444; font-size: 11px; margin: 4px 0; }
+    .editor-top { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 6px; }
+    .editor-top .win-select { flex: 1 1 260px; min-width: 0; }
+    #pianoRoll { width: 100%; height: 170px; display: block; background: #050a05; border: 1px solid #000; }
+    .roll-legend { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+    .roll-legend span::before { content: "■ "; }
+    .strip-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 6px; }
+    .channel-strip {
+      background: var(--win-gray);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
+      padding: 6px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .channel-strip .strip-name { font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    .channel-strip .win-select { min-width: 0; width: 100%; }
+    .channel-strip .strip-row { display: flex; gap: 4px; align-items: center; }
+    .channel-strip .strip-row .win-slider { flex: 1; min-width: 0; }
+    .vol-readout { font-family: monospace; width: 38px; text-align: right; }
+    .mute-btn.pressed { background: #ff5555; color: #fff; border-color: var(--win-black) var(--win-light) var(--win-light) var(--win-black); }
+    .global-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+    .global-row .ctl { display: flex; gap: 4px; align-items: center; }
+    .lcd-mini {
+      font-family: "Courier New", monospace;
+      background: var(--screen-bg);
+      color: var(--phosphor-green);
+      padding: 2px 6px;
+      min-width: 44px;
+      text-align: center;
+      border: 1px solid #000;
+    }
+    .new-melody.pressed { background: var(--amber); }
+    .editor-empty { color: #444; padding: 12px 4px; }
+    #tab-editor .crt-panel-title, #quickResult .crt-panel-title { gap: 8px; flex-wrap: wrap; }
+    /* Importar playlist */
+    .pl-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .pl-row .win-input { flex: 1 1 260px; min-width: 0; }
+    .pl-progress {
+      height: 18px; margin-top: 6px; background: #fff; padding: 2px;
+      border: 2px solid; border-color: var(--win-black) var(--win-light) var(--win-light) var(--win-black);
+    }
+    .pl-progress-bar {
+      height: 100%; width: 0%;
+      background: repeating-linear-gradient(90deg, var(--win-blue) 0 9px, transparent 9px 11px);
+      transition: width 0.3s;
+    }
+    .pl-note { background: #ffffe1; border: 1px solid #000; padding: 4px 6px; color: #000; }
+    .pl-groups { display: flex; gap: 10px; flex-wrap: wrap; color: var(--amber); }
+    .pl-table .win-select { font-size: 11px; max-width: 170px; }
+    .pl-table td.pl-err { color: #808080; font-style: italic; }
+    .pl-feat { font-family: monospace; font-size: 10px; white-space: nowrap; }
+    .pl-doubt { color: #b00000; font-weight: bold; }
+    .pl-result { border-bottom: 1px dashed #1e840a; padding: 4px 0; }
+    .pl-result .result-actions { margin-top: 4px; }
+    #tab-playlist .crt-panel-title { gap: 8px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .wizard-steps, .strip-grid { grid-template-columns: 1fr; }
+      .tab-sep { width: 100%; padding: 2px 0; }
+    }
   </style>
 </head>
 <body>
@@ -478,8 +710,8 @@
 
     <!-- Menú Clásico -->
     <div class="win-menubar">
-      <div class="win-menuitem" onclick="switchTab('tab-generate')"><span>A</span>rchivo</div>
-      <div class="win-menuitem" onclick="switchTab('tab-mixer')"><span>E</span>dición</div>
+      <div class="win-menuitem" onclick="switchTab('tab-quick')"><span>A</span>rchivo</div>
+      <div class="win-menuitem" onclick="switchTab('tab-editor')"><span>E</span>dición</div>
       <div class="win-menuitem" onclick="togglePlay()"><span>R</span>eproducir</div>
       <div class="win-menuitem" onclick="switchTab('tab-catalog')"><span>P</span>istas</div>
       <div class="win-menuitem" onclick="switchTab('tab-legal')"><span>A</span>yuda</div>
@@ -520,7 +752,7 @@
 
       <!-- Controles de Transporte (Play, Stop, Barra de Búsqueda) -->
       <div class="transport-panel">
-        <button class="win-btn win-btn-primary" id="btnPlay" onclick="togglePlay()" style="width: 75px;">► Play</button>
+        <button class="win-btn win-btn-primary" id="btnPlay" onclick="togglePlay()" style="min-width: 75px; white-space: nowrap;">► Play</button>
         <button class="win-btn" onclick="stopAudio()" style="width: 65px;">■ Stop</button>
         <div class="progress-seek-box">
           <span style="font-family: monospace;" id="timeCurrent">0:00</span>
@@ -532,15 +764,183 @@
 
       <!-- Pestañas Organizadoras -->
       <div class="tab-strip">
-        <button class="tab-btn active" id="btn-tab-generate" onclick="switchTab('tab-generate')">Compositor de Pistas</button>
-        <button class="tab-btn" id="btn-tab-yt" onclick="switchTab('tab-yt')">Extractor YouTube DNA</button>
-        <button class="tab-btn" id="btn-tab-mixer" onclick="switchTab('tab-mixer')">Mesa de Mezcla & Mashups</button>
-        <button class="tab-btn" id="btn-tab-catalog" onclick="switchTab('tab-catalog')">Explorador de Pistas</button>
-        <button class="tab-btn" id="btn-tab-legal" onclick="switchTab('tab-legal')">Manual Content ID</button>
+        <button class="tab-btn tab-main active" id="btn-tab-quick" onclick="switchTab('tab-quick')">★ Crear Tema Rápido</button>
+        <button class="tab-btn tab-main" id="btn-tab-playlist" onclick="switchTab('tab-playlist')">☰ Importar Playlist</button>
+        <button class="tab-btn tab-main" id="btn-tab-editor" onclick="switchTab('tab-editor')">✎ Editar Tema</button>
+        <button class="tab-btn tab-main" id="btn-tab-catalog" onclick="switchTab('tab-catalog')">♫ Mis Temas</button>
+        <span class="tab-sep">AVANZADO:</span>
+        <button class="tab-btn" id="btn-tab-generate" onclick="switchTab('tab-generate')">Compositor</button>
+        <button class="tab-btn" id="btn-tab-yt" onclick="switchTab('tab-yt')">YouTube DNA</button>
+        <button class="tab-btn" id="btn-tab-fusion" onclick="switchTab('tab-fusion')">Fusión Multi-Link</button>
+        <button class="tab-btn" id="btn-tab-rack" onclick="switchTab('tab-rack')">Rack</button>
+        <button class="tab-btn" id="btn-tab-mixer" onclick="switchTab('tab-mixer')">Mezcla & Mashups</button>
+        <button class="tab-btn" id="btn-tab-legal" onclick="switchTab('tab-legal')">Manual</button>
+      </div>
+
+      <!-- Flujo rapido: 3 pasos -->
+      <div class="tab-pane active" id="tab-quick">
+        <div class="wizard-steps">
+          <fieldset class="win-groupbox wizard-step">
+            <legend class="win-legend"><span class="step-num">1</span>¿De dónde sale la idea?</legend>
+            <div class="choice-row">
+              <button type="button" class="win-btn choice-btn pressed" id="srcLinksBtn" onclick="setSourceMode('links')">🔗 De links o archivos</button>
+              <button type="button" class="win-btn choice-btn" id="srcStyleBtn" onclick="setSourceMode('style')">🎲 Sin fuente</button>
+            </div>
+            <div id="srcLinksBox">
+              <textarea class="win-input" id="quickUrls" rows="3" style="width: 100%;" aria-label="Links, uno por línea" placeholder="Pega 1 a 5 links (uno por línea)"></textarea>
+              <input type="file" class="win-input" id="quickFiles" style="width: 100%; margin-top: 4px;" multiple aria-label="Temas descargados" accept=".wav,.mp3,.m4a,.aac,.flac,.ogg,.opus,.webm,audio/*">
+              <p class="hint">Se mide tempo, tonalidad y timbre. Varias fuentes = fusión armónica por el círculo de quintas. El audio nunca se copia.</p>
+            </div>
+            <div id="srcStyleBox" style="display: none;">
+              <select class="win-select" id="quickGenre" style="width: 100%;" aria-label="Estilo">
+                {% for g in genres %}<option value="{{ g.id }}">{{ g.name }} ({{ g.bpm }} BPM)</option>{% endfor %}
+              </select>
+              <p class="hint">El motor compone desde cero con teoría musical en el estilo elegido.</p>
+            </div>
+          </fieldset>
+          <fieldset class="win-groupbox wizard-step">
+            <legend class="win-legend"><span class="step-num">2</span>Elige el sonido</legend>
+            <div class="pack-grid" id="packGrid"></div>
+            <p class="hint">Cada instrumento se cambia luego en <strong>Editar Tema</strong>.</p>
+          </fieldset>
+          <fieldset class="win-groupbox wizard-step">
+            <legend class="win-legend"><span class="step-num">3</span>Crear</legend>
+            <div class="choice-row" role="group" aria-label="Duración">
+              <button type="button" class="win-btn choice-btn" data-len="short" onclick="setLength('short')">Corto</button>
+              <button type="button" class="win-btn choice-btn pressed" data-len="medium" onclick="setLength('medium')">Medio</button>
+              <button type="button" class="win-btn choice-btn" data-len="long" onclick="setLength('long')">Largo</button>
+            </div>
+            <input type="text" class="win-input" id="quickTitle" style="width: 100%;" aria-label="Título" placeholder="Título (opcional)">
+            <button type="button" class="win-btn win-btn-primary wizard-go" id="btnQuick" onclick="quickCreate()">♫ CREAR TEMA</button>
+            <div id="quickFeedback" class="hint" style="font-family: monospace; color: var(--win-blue);"></div>
+          </fieldset>
+        </div>
+        <div class="crt-panel" id="quickResult" style="margin-top: 4px; display: none;">
+          <div class="crt-panel-title"><span id="quickResultTitle">TEMA</span><span id="quickResultMeta"></span></div>
+          <div class="check-verdict" id="quickVerdict"></div>
+          <ul class="check-list" id="quickChecks" style="max-height: 110px;"></ul>
+          <div class="result-actions">
+            <button type="button" class="win-btn win-btn-primary" id="quickEditBtn">✎ Editar este tema</button>
+            <a class="win-btn" id="quickWav" download>💾 WAV</a>
+            <a class="win-btn" id="quickMid" download>🎹 MIDI</a>
+            <button type="button" class="win-btn" id="quickFlBtn">FL Studio</button>
+            <button type="button" class="win-btn" onclick="quickCreate(true)">🎲 Otra versión</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Importar playlist: clasificar por genero y componer temas parecidos -->
+      <div class="tab-pane" id="tab-playlist">
+        <fieldset class="win-groupbox">
+          <legend class="win-legend"><span class="step-num">1</span>Pega tu playlist de YouTube</legend>
+          <div class="pl-row">
+            <input type="url" class="win-input" id="plUrl" aria-label="Link de la playlist" placeholder="https://www.youtube.com/playlist?list=...  (pública o no listada)">
+            <select class="win-select" id="plLimit" aria-label="Cuántos temas analizar">
+              <option value="5">5 temas</option>
+              <option value="10" selected>10 temas</option>
+              <option value="15">15 temas</option>
+              <option value="20">20 temas</option>
+              <option value="25">25 temas</option>
+            </select>
+            <select class="win-select" id="plPick" aria-label="Qué temas tomar">
+              <option value="first" selected>Los primeros</option>
+              <option value="random">Al azar</option>
+            </select>
+            <button type="button" class="win-btn win-btn-primary" id="btnPlImport" onclick="importPlaylist()">⇩ Analizar playlist</button>
+          </div>
+          <div class="pl-progress" role="progressbar" aria-label="Progreso del análisis"><div class="pl-progress-bar" id="plBar"></div></div>
+          <div id="plFeedback" class="hint" style="font-family: monospace; color: var(--win-blue);"></div>
+          <p class="hint pl-note">⚠ <strong>Qué se extrae:</strong> tempo, tonalidad, modo, brillo, graves, percusión, densidad rítmica y energía de ~30 s de cada tema (el audio se borra al medirlo).
+            <strong>Qué NO se extrae:</strong> la melodía, la letra ni la partitura. Copiarlas haría una obra derivada que Content ID reclamaría; cada tema nuevo se compone desde cero y se compara con la huella de su fuente.</p>
+        </fieldset>
+        <div id="plBody" style="display: none;">
+          <div class="crt-panel">
+            <div class="crt-panel-title"><span id="plTitle">PLAYLIST</span><span id="plCount"></span></div>
+            <div class="pl-groups" id="plGroups"></div>
+          </div>
+          <div class="win-table-box" style="margin-top: 4px;">
+            <table class="win-table pl-table">
+              <thead>
+                <tr>
+                  <th style="width: 24px;"><input type="checkbox" id="plAll" aria-label="Seleccionar todos" checked onchange="toggleAllPlaylist(this.checked)"></th>
+                  <th>#</th>
+                  <th>Tema</th>
+                  <th>Género</th>
+                  <th>BPM</th>
+                  <th>Tonalidad</th>
+                  <th>Rasgos</th>
+                </tr>
+              </thead>
+              <tbody id="plTableBody"></tbody>
+            </table>
+          </div>
+          <p class="hint">El género es una estimación por tempo y timbre. Si no te convence, cámbialo en la lista y se usa el que elijas.</p>
+          <fieldset class="win-groupbox">
+            <legend class="win-legend"><span class="step-num">2</span>Componer temas originales parecidos</legend>
+            <div class="choice-row" role="group" aria-label="Cuántos temas crear">
+              <button type="button" class="win-btn choice-btn pressed" data-plmode="per_track" onclick="setPlaylistMode('per_track')">1 tema nuevo por cada canción marcada</button>
+              <button type="button" class="win-btn choice-btn" data-plmode="per_genre" onclick="setPlaylistMode('per_genre')">1 tema nuevo por cada género</button>
+            </div>
+            <div class="pl-row">
+              <select class="win-select" id="plPack" aria-label="Sonido" style="flex: 1 1 200px; min-width: 0;">
+                <option value="">Sonido: AUTO (el típico de cada género)</option>
+              </select>
+              <select class="win-select" id="plBars" aria-label="Duración" style="flex: 1 1 140px; min-width: 0;">
+                <option value="8">Corto (8 compases)</option>
+                <option value="16" selected>Medio (16 compases)</option>
+                <option value="32">Largo (32 compases)</option>
+              </select>
+              <button type="button" class="win-btn win-btn-primary" id="btnPlCompose" onclick="composePlaylist()">♫ Componer</button>
+            </div>
+            <div id="plComposeFeedback" class="hint" style="font-family: monospace; color: var(--win-blue);"></div>
+          </fieldset>
+          <div class="crt-panel" id="plResults" style="display: none;">
+            <div class="crt-panel-title"><span>TEMAS NUEVOS</span><span id="plResultsCount"></span></div>
+            <div id="plResultsList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editor de temas -->
+      <div class="tab-pane" id="tab-editor">
+        <div class="editor-top">
+          <select class="win-select" id="editorTrack" aria-label="Tema a editar"></select>
+          <button type="button" class="win-btn" onclick="loadProject(document.getElementById('editorTrack').value)">Abrir</button>
+        </div>
+        <div id="editorEmpty" class="editor-empty">Crea un tema en <strong>Crear Tema Rápido</strong> o elige uno de la lista para editarlo.</div>
+        <div id="editorBody" style="display: none;">
+          <div class="crt-panel">
+            <div class="crt-panel-title"><span id="editorTitle">PIANO ROLL</span><span id="editorMeta"></span></div>
+            <canvas id="pianoRoll"></canvas>
+            <div class="roll-legend" id="rollLegend"></div>
+          </div>
+          <div class="strip-grid" id="stripGrid"></div>
+          <div class="global-row">
+            <div class="ctl">Transponer:
+              <button type="button" class="win-btn" onclick="nudgeTranspose(-1)" aria-label="Bajar un semitono">−</button>
+              <span class="lcd-mini" id="transposeLcd">0</span>
+              <button type="button" class="win-btn" onclick="nudgeTranspose(1)" aria-label="Subir un semitono">+</button>
+            </div>
+            <div class="ctl">Tempo:
+              <input type="range" class="win-slider" id="bpmSlider" min="60" max="180" step="1" style="width: 120px;" aria-label="Tempo en BPM">
+              <span class="lcd-mini" id="bpmLcd">120</span>
+            </div>
+            <button type="button" class="win-btn new-melody" id="newMelodyBtn" onclick="toggleNewMelody()">🎲 Nueva melodía</button>
+          </div>
+          <div class="global-row">
+            <button type="button" class="win-btn win-btn-primary" id="btnApplyEdit" onclick="renderEdit(false)">⟳ Aplicar y escuchar</button>
+            <input type="text" class="win-input" id="editAsNewTitle" placeholder="Título del tema nuevo (opcional)" style="flex: 1 1 180px; min-width: 0;">
+            <button type="button" class="win-btn" id="btnSaveAsNew" onclick="renderEdit(true)">＋ Guardar como tema nuevo</button>
+          </div>
+          <div class="crt-panel" style="margin-top: 6px;">
+            <div class="crt-panel-title"><span>CHECKS</span><span id="editorStatus">SIN CAMBIOS</span></div>
+            <ul class="check-list" id="editorChecks" style="max-height: 110px;"></ul>
+          </div>
+        </div>
       </div>
 
       <!-- Pestaña 1: Generador de Pistas -->
-      <div class="tab-pane active" id="tab-generate">
+      <div class="tab-pane" id="tab-generate">
         <fieldset class="win-groupbox">
           <legend class="win-legend">Generación Algorítmica Diatónica</legend>
           <form id="genForm">
@@ -600,6 +1000,94 @@
               </button>
             </div>
           </form>
+        </fieldset>
+      </div>
+
+      <!-- Pestaña 2b: Fusión Armónica Multi-Link -->
+      <div class="tab-pane" id="tab-fusion">
+        <div class="fusion-grid">
+          <div>
+            <fieldset class="win-groupbox">
+              <legend class="win-legend">Varios Links → Un Tema Original (Círculo de Quintas)</legend>
+              <p style="margin-bottom: 10px; color: #444;">
+                Pega links (uno por línea) y/o sube temas descargados: hasta 5 fuentes. Cada fuente aporta tempo y tonalidad; el motor escribe un
+                leitmotiv propio, le da una sección en la tonalidad de cada fuente y las une con dominantes que
+                avanzan por cuartas. El audio de los links solo se mide: nunca se copia.
+              </p>
+              <form id="fusionForm">
+                <div class="form-row" style="align-items: flex-start;">
+                  <label class="form-label-retro" for="fusionUrls">Links (uno por línea):</label>
+                  <textarea class="win-input" id="fusionUrls" rows="4" placeholder="https://www.youtube.com/watch?v=...&#10;https://youtu.be/..."></textarea>
+                </div>
+                <div class="form-row">
+                  <label class="form-label-retro" for="fusionFiles">Temas descargados:</label>
+                  <input type="file" class="win-input" id="fusionFiles" multiple accept=".wav,.mp3,.m4a,.aac,.flac,.ogg,.opus,.webm,audio/*">
+                </div>
+                <div class="form-row">
+                  <label class="form-label-retro" for="fusionStyle">Estilo de Composición:</label>
+                  <select class="win-select" id="fusionStyle">
+                    <option value="pvz_gotico_swing" selected>🧟 Gótico-Tierno Swing (principios de Laura Shigihara / PvZ)</option>
+                    <option value="seguir_fuente">🎧 Seguir el Groove de la Fuente (trap / boom bap / 4x4)</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label class="form-label-retro" for="fusionBars">Compases por Sección:</label>
+                  <select class="win-select" id="fusionBars">
+                    <option value="4">4 compases (fusión corta)</option>
+                    <option value="8" selected>8 compases (frase A-A-B-A)</option>
+                    <option value="16">16 compases (sección larga)</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label class="form-label-retro" for="fusionVariation">Variación N°:</label>
+                  <input type="number" class="win-input" id="fusionVariation" value="0" min="0" max="999" style="flex: 0 0 80px;">
+                  <span style="color: #444;">Mismos links + otra variación = otro tema publicable.</span>
+                </div>
+                <div class="form-row">
+                  <label class="form-label-retro" for="fusionTitle">Título de la Obra:</label>
+                  <input type="text" class="win-input" id="fusionTitle" placeholder="Dejar vacío para automático">
+                </div>
+                <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                  <span id="fusionFeedback" style="font-family: monospace; font-weight: bold; color: var(--win-blue);"></span>
+                  <button type="submit" class="win-btn win-btn-primary" id="btnFusion" style="padding: 6px 20px;">
+                    🔀 Analizar y Fusionar
+                  </button>
+                </div>
+              </form>
+            </fieldset>
+          </div>
+          <div class="crt-panel">
+            <div class="crt-panel-title"><span>CÍRCULO DE QUINTAS</span><span id="fusionHomeKey">HOGAR: --</span></div>
+            <canvas id="circleCanvas" width="260" height="260"></canvas>
+            <div style="color: var(--amber); margin-top: 4px;">■ fuente &nbsp; <span style="color:#fff;">◉ hogar</span> &nbsp; — ruta por cuartas</div>
+          </div>
+        </div>
+        <div class="crt-panel" id="fusionResultPanel" style="margin-top: 4px; display: none;">
+          <div class="crt-panel-title"><span>ARREGLO</span><span id="fusionMeta"></span></div>
+          <div class="arrange-strip" id="fusionArrange"></div>
+          <div class="crt-panel-title" style="margin-top: 8px;"><span>INSTRUMENTOS</span><span>RACK</span></div>
+          <ul class="check-list" id="fusionInstruments" style="color: var(--amber);"></ul>
+          <div class="crt-panel-title" style="margin-top: 8px;"><span>CHECKS DE PUBLICACIÓN</span><span id="fusionIsrc"></span></div>
+          <div class="check-verdict" id="fusionVerdict"></div>
+          <ul class="check-list" id="fusionChecks"></ul>
+        </div>
+      </div>
+
+      <!-- Pestaña 2c: Rack de Instrumentos -->
+      <div class="tab-pane" id="tab-rack">
+        <fieldset class="win-groupbox">
+          <legend class="win-legend">Rack de Sintetizadores Procedurales (cero samples)</legend>
+          <p style="margin-bottom: 10px; color: #444;">
+            Cada módulo es una fórmula matemática (pulso 8-bit, FM, Karplus-Strong, aditiva con filtro, formantes...).
+            El rack se usa en el <strong>Compositor</strong> y en la <strong>Fusión</strong>. En <strong>AUTO</strong> la fusión
+            elige el sonido según el timbre medido en tus links (brillo, graves, percusión). Cada paquete de FL Studio
+            incluye el programa GM y el plugin sugerido de cada canal.
+          </p>
+          <div class="rack-grid" id="rackGrid"></div>
+          <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span id="rackStatus" style="font-family: monospace; color: var(--win-blue);"></span>
+            <button type="button" class="win-btn" onclick="resetRack()">↺ Todo en AUTO</button>
+          </div>
         </fieldset>
       </div>
 
@@ -677,6 +1165,7 @@
             <li><strong>Regla de Oro:</strong> Prohibido usar loops de melodías o samples de terceros (Splice, Cymatics, Looperman).</li>
             <li><strong>Composición Matemática:</strong> Cada nota es generada mediante matrices de teoría musical y renderizada por síntesis procedural.</li>
             <li><strong>Estándar de Sonoridad:</strong> Salida a -14 LUFS con techo True Peak de -1.0 dBFS para evitar distorsión en transcodificación de YouTube.</li>
+            <li><strong>Fusión Multi-Link:</strong> El audio de cada link solo se mide (tempo, tonalidad, huella). Antes de publicar, el tema debe pasar el check de huella (&lt; 15% de coincidencia por fuente) y el de similitud tonal.</li>
             <li><strong>Trazabilidad:</strong> Cada tema cuenta con código ISRC ISO 3901 y ficha de catalogación en JSON/CSV lista para distribuidoras (Identifyy, Soundrop, Songtradr).</li>
           </ul>
         </fieldset>
@@ -741,6 +1230,7 @@
       const targetBtn = document.getElementById('btn-' + tabId);
       if (targetPane) targetPane.classList.add('active');
       if (targetBtn) targetBtn.classList.add('active');
+      if (tabId === 'tab-editor' && typeof drawPianoRoll === 'function') drawPianoRoll();
     }
 
     // Visualizador CRT en Fósforo Verde
@@ -873,6 +1363,7 @@
         if (data.success) {
           renderTable(data.tracks);
           updateMixerDropdowns(data.tracks);
+          refreshEditorTracks(data.tracks);
           trackCountBadge.textContent = `${data.tracks.length} elementos`;
           statusTrackCount.textContent = `PISTAS: ${data.tracks.length}`;
         }
@@ -931,6 +1422,7 @@
               <a href="/audio/${t.audio_filename}" class="win-btn" style="padding: 1px 5px;" download>WAV</a>
               <a href="/midi/${t.midi_filename}" class="win-btn" style="padding: 1px 5px;" download>MID</a>
               <button class="win-btn" style="padding: 1px 5px;" onclick="downloadFLPackage('${t.isrc}')">FL Studio</button>
+              <button class="win-btn" style="padding: 1px 5px;" onclick="openEditor('${t.isrc}')">✎ Editar</button>
             </div>
           </td>
         `;
@@ -948,7 +1440,8 @@
       const payload = {
         genre: document.getElementById('genreSelect').value,
         bars: parseInt(document.getElementById('barsSelect').value),
-        title: document.getElementById('titleInput').value.trim()
+        title: document.getElementById('titleInput').value.trim(),
+        instruments: rackPayload()
       };
 
       try {
@@ -1011,6 +1504,853 @@
         btn.textContent = '⚡ Analizar y Componer Tema Original';
       }
     });
+
+    // Fusión Armónica Multi-Link
+    const CIRCLE_MAJOR = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#', 'F'];
+    const CIRCLE_MINOR = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#', 'F', 'C', 'G', 'D'];
+
+    function circleSlot(keyName) {
+      const [tonic, mode] = keyName.split(' ');
+      const ring = mode === 'major' ? CIRCLE_MAJOR : CIRCLE_MINOR;
+      return { pos: ring.indexOf(tonic), inner: mode !== 'major' };
+    }
+
+    function drawCircle(plan) {
+      const cv = document.getElementById('circleCanvas');
+      const c = cv.getContext('2d');
+      const W = cv.width, cx = W / 2, cy = W / 2;
+      const rOut = W * 0.40, rIn = W * 0.26;
+      const green = '#39ff14', dim = '#1e840a', amber = '#ffb000';
+      const xy = (slot) => {
+        const a = (slot.pos / 12) * Math.PI * 2 - Math.PI / 2;
+        const r = slot.inner ? rIn : rOut;
+        return [cx + Math.cos(a) * r, cy + Math.sin(a) * r];
+      };
+      c.clearRect(0, 0, W, W);
+      c.strokeStyle = dim;
+      c.lineWidth = 1;
+      [rOut, rIn].forEach(r => { c.beginPath(); c.arc(cx, cy, r, 0, Math.PI * 2); c.stroke(); });
+      c.font = 'bold 11px Courier New';
+      c.textAlign = 'center';
+      c.textBaseline = 'middle';
+
+      const sources = plan ? plan.source_keys : [];
+      const home = plan ? plan.home_key : null;
+
+      if (plan) {
+        // Ruta: secuencia de tonalidades por la que pasa el arreglo
+        const route = [];
+        plan.sections.forEach(s => { if (!route.length || route[route.length - 1] !== s.key) route.push(s.key); });
+        c.strokeStyle = green;
+        c.lineWidth = 2;
+        c.shadowColor = green;
+        c.shadowBlur = 6;
+        c.beginPath();
+        route.forEach((k, i) => { const [x, y] = xy(circleSlot(k)); i ? c.lineTo(x, y) : c.moveTo(x, y); });
+        c.stroke();
+        c.shadowBlur = 0;
+      }
+
+      [[CIRCLE_MAJOR, 'major'], [CIRCLE_MINOR, 'minor']].forEach(([ring, mode]) => {
+        ring.forEach((tonic, i) => {
+          const name = `${tonic} ${mode}`;
+          const [x, y] = xy({ pos: i, inner: mode === 'minor' });
+          const isSource = sources.includes(name);
+          const isHome = name === home;
+          if (isSource || isHome) {
+            c.fillStyle = isHome ? '#ffffff' : amber;
+            c.beginPath(); c.arc(x, y, 11, 0, Math.PI * 2); c.fill();
+            c.fillStyle = '#000';
+          } else {
+            c.fillStyle = mode === 'major' ? green : dim;
+          }
+          c.fillText(mode === 'major' ? tonic : tonic.toLowerCase(), x, y);
+        });
+      });
+    }
+
+    function renderFusionResult(data) {
+      const plan = data.plan;
+      drawCircle(plan);
+      document.getElementById('fusionHomeKey').textContent = `HOGAR: ${plan.home_key.toUpperCase()}`;
+      document.getElementById('fusionMeta').textContent = `${plan.bpm} BPM · ${plan.sections.reduce((n, s) => n + s.bars, 0)} COMPASES`;
+      document.getElementById('fusionIsrc').textContent = data.track.isrc;
+
+      const strip = document.getElementById('fusionArrange');
+      strip.innerHTML = '';
+      plan.sections.forEach(s => {
+        const b = document.createElement('div');
+        b.className = `arrange-block ${s.kind}`;
+        b.style.flex = s.bars;
+        b.title = `${s.label} · ${s.bars} compases`;
+        b.textContent = s.kind === 'tema' ? `${s.label.split(' (')[0]} ${s.key}` : s.key.split(' ')[0];
+        strip.appendChild(b);
+      });
+
+      const verdict = document.getElementById('fusionVerdict');
+      verdict.textContent = data.report.aprobado ? '✓ APTO PARA PUBLICAR' : '✗ REVISAR ANTES DE PUBLICAR';
+      verdict.className = 'check-verdict ' + (data.report.aprobado ? 'check-ok' : 'check-fail');
+
+      const instList = document.getElementById('fusionInstruments');
+      instList.innerHTML = '';
+      (plan.instruments || []).forEach(inst => {
+        const li = document.createElement('li');
+        li.textContent = `${RACK_LABELS[inst.role]}: ${inst.name} — ${inst.reason}`;
+        instList.appendChild(li);
+      });
+
+      const list = document.getElementById('fusionChecks');
+      list.innerHTML = '';
+      data.report.checks.forEach(ch => {
+        const li = document.createElement('li');
+        li.className = ch.passed ? 'check-ok' : 'check-fail';
+        const val = ch.value === null ? '' : ` = ${ch.value}`;
+        li.textContent = `[${ch.passed ? 'OK' : 'XX'}] ${ch.check}${val} — ${ch.detail}`;
+        list.appendChild(li);
+      });
+      document.getElementById('fusionResultPanel').style.display = 'block';
+    }
+
+    drawCircle(null);
+
+    document.getElementById('fusionForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnFusion');
+      const feedback = document.getElementById('fusionFeedback');
+      const urls = document.getElementById('fusionUrls').value.split('\n').map(u => u.trim()).filter(Boolean);
+      const files = [...document.getElementById('fusionFiles').files];
+      if (!urls.length && !files.length) {
+        feedback.textContent = 'Pega un link o sube un archivo.';
+        return;
+      }
+      if (urls.length + files.length > 5) {
+        feedback.textContent = 'Máximo 5 fuentes por fusión.';
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Analizando fuentes...';
+      feedback.textContent = `Descargando y midiendo ${urls.length + files.length} fuente(s)...`;
+
+      const payload = {
+        urls: urls,
+        style: document.getElementById('fusionStyle').value,
+        bars_per_section: parseInt(document.getElementById('fusionBars').value, 10),
+        variation: parseInt(document.getElementById('fusionVariation').value || '0', 10),
+        title: document.getElementById('fusionTitle').value.trim(),
+        instruments: rackPayload()
+      };
+
+      try {
+        let res;
+        if (files.length) {
+          // Con archivos: multipart (links + temas descargados)
+          const form = new FormData();
+          Object.entries(payload).forEach(([k, v]) => {
+            if (k === 'urls') form.append(k, v.join('\n'));
+            else if (k === 'instruments') form.append(k, JSON.stringify(v));
+            else form.append(k, v);
+          });
+          files.forEach(f => form.append('files', f));
+          res = await fetch('/api/harmonic-fusion', { method: 'POST', body: form });
+        } else {
+          res = await fetch('/api/harmonic-fusion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        }
+        const data = await res.json();
+        if (data.success) {
+          const keys = data.sources.map(s => `${s.detected_key} ${s.detected_bpm}BPM`).join(' + ');
+          feedback.textContent = `✓ ${keys}`;
+          renderFusionResult(data);
+          await loadCatalog();
+          playTrack(data.track);
+          document.getElementById('fusionTitle').value = '';
+          document.getElementById('fusionFiles').value = '';
+        } else {
+          feedback.textContent = 'Error: ' + data.error;
+        }
+      } catch (err) {
+        feedback.textContent = 'Error: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🔀 Analizar y Fusionar';
+      }
+    });
+
+    // Rack de Instrumentos
+    const RACK_LABELS = { lead: 'MELODÍA', pad: 'ARMONÍA', bass: 'BAJO', drums: 'BATERÍA' };
+    let rackCatalog = null;
+    const rack = { lead: 'auto', pad: 'auto', bass: 'auto', drums: 'auto' };
+    const previewAudio = new Audio();
+
+    function rackPayload() {
+      const out = {};
+      Object.entries(rack).forEach(([role, id]) => { if (id !== 'auto') out[role] = id; });
+      return out;
+    }
+
+    function rackLcd(role) {
+      const lcd = document.getElementById(`rackLcd-${role}`);
+      const led = document.getElementById(`rackLed-${role}`);
+      const id = rack[role];
+      led.classList.toggle('on', id !== 'auto');
+      if (id === 'auto') {
+        const def = rackCatalog.roles[role].find(i => i.id === rackCatalog.default_rack[role]);
+        lcd.innerHTML = '<strong>AUTO</strong><div>Fusión: según el timbre de los links.</div>' +
+          `<div class="rack-meta">Compositor: ${def ? def.name : '-'}</div>`;
+        return;
+      }
+      const inst = rackCatalog.roles[role].find(i => i.id === id);
+      lcd.innerHTML = '';
+      const name = document.createElement('strong');
+      name.textContent = inst.name;
+      const desc = document.createElement('div');
+      desc.textContent = inst.description;
+      const meta = document.createElement('div');
+      meta.className = 'rack-meta';
+      meta.textContent = `GM ${inst.gm_program} · FL: ${inst.fl_plugin}`;
+      lcd.append(name, desc, meta);
+    }
+
+    function updateRackStatus() {
+      const chosen = Object.entries(rack).filter(([, id]) => id !== 'auto').length;
+      document.getElementById('rackStatus').textContent =
+        chosen ? `${chosen} de 4 módulos fijados a mano` : 'Todos los módulos en AUTO';
+    }
+
+    function previewInstrument(role) {
+      const id = rack[role] === 'auto' ? rackCatalog.default_rack[role] : rack[role];
+      previewAudio.pause();
+      previewAudio.src = `/api/instrument-preview/${id}`;
+      previewAudio.play().catch(err => console.log('Preview:', err));
+    }
+
+    function resetRack() {
+      Object.keys(rack).forEach(role => {
+        rack[role] = 'auto';
+        const sel = document.getElementById(`rackSel-${role}`);
+        if (sel) sel.value = 'auto';
+        if (rackCatalog) rackLcd(role);
+      });
+      updateRackStatus();
+    }
+
+    async function initRack() {
+      try {
+        rackCatalog = await ensureCatalog();
+      } catch (err) {
+        document.getElementById('rackStatus').textContent = 'No se pudo cargar el rack: ' + err.message;
+        return;
+      }
+      const grid = document.getElementById('rackGrid');
+      grid.innerHTML = '';
+      Object.keys(RACK_LABELS).forEach(role => {
+        const mod = document.createElement('div');
+        mod.className = 'rack-module';
+        mod.innerHTML = `
+          <div class="rack-head"><span>${RACK_LABELS[role]}</span><span class="rack-led" id="rackLed-${role}"></span></div>
+          <div class="rack-lcd" id="rackLcd-${role}"></div>
+          <div class="rack-controls">
+            <select class="win-select" id="rackSel-${role}" aria-label="Instrumento de ${RACK_LABELS[role]}"></select>
+            <button type="button" class="win-btn" onclick="previewInstrument('${role}')">▶ Probar</button>
+          </div>`;
+        grid.appendChild(mod);
+        const sel = mod.querySelector('select');
+        sel.add(new Option('AUTO (según las fuentes)', 'auto'));
+        const auto = sel.options[0];
+        fillInstrumentSelect(sel, rackCatalog, role);
+        sel.insertBefore(auto, sel.firstChild);
+        sel.value = 'auto';
+        sel.addEventListener('change', () => {
+          rack[role] = sel.value;
+          rackLcd(role);
+          updateRackStatus();
+        });
+        rackLcd(role);
+      });
+      updateRackStatus();
+    }
+
+
+    // ===== Flujo rápido (3 pasos) =====
+    let instrumentCatalogPromise = null;
+    function ensureCatalog() {
+      if (!instrumentCatalogPromise) {
+        instrumentCatalogPromise = fetch('/api/instruments').then(r => r.json());
+      }
+      return instrumentCatalogPromise;
+    }
+
+    const quick = { source: 'links', pack: '', length: 'medium', lastPayload: null };
+    const LENGTHS = { short: { bars: 8, section: 4 }, medium: { bars: 16, section: 8 }, long: { bars: 32, section: 16 } };
+
+    function setSourceMode(mode) {
+      quick.source = mode;
+      document.getElementById('srcLinksBtn').classList.toggle('pressed', mode === 'links');
+      document.getElementById('srcStyleBtn').classList.toggle('pressed', mode === 'style');
+      document.getElementById('srcLinksBox').style.display = mode === 'links' ? '' : 'none';
+      document.getElementById('srcStyleBox').style.display = mode === 'style' ? '' : 'none';
+    }
+
+    function setLength(len) {
+      quick.length = len;
+      document.querySelectorAll('[data-len]').forEach(b => b.classList.toggle('pressed', b.dataset.len === len));
+    }
+
+    function selectPack(id) {
+      quick.pack = id;
+      document.querySelectorAll('.pack-btn').forEach(b => b.classList.toggle('pressed', b.dataset.pack === id));
+    }
+
+    async function initPacks() {
+      const grid = document.getElementById('packGrid');
+      let cat;
+      try { cat = await ensureCatalog(); } catch (err) { grid.textContent = 'No se pudieron cargar los sonidos.'; return; }
+      const packs = [{ id: '', name: 'AUTO', description: 'Según el timbre de tus links' }].concat(cat.packs);
+      packs.forEach(p => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'win-btn pack-btn';
+        b.dataset.pack = p.id;
+        const name = document.createElement('strong');
+        name.textContent = p.name;
+        const desc = document.createElement('small');
+        desc.textContent = p.description;
+        b.append(name, desc);
+        b.addEventListener('click', () => selectPack(p.id));
+        grid.appendChild(b);
+      });
+      selectPack('');
+    }
+
+    function renderChecks(listEl, report) {
+      listEl.innerHTML = '';
+      report.checks.forEach(ch => {
+        const li = document.createElement('li');
+        li.className = ch.passed ? 'check-ok' : 'check-fail';
+        const val = ch.value === null ? '' : ` = ${ch.value}`;
+        li.textContent = `[${ch.passed ? 'OK' : 'XX'}] ${ch.check}${val} — ${ch.detail}`;
+        listEl.appendChild(li);
+      });
+    }
+
+    function showQuickResult(data) {
+      const t = data.track;
+      document.getElementById('quickResult').style.display = 'block';
+      document.getElementById('quickResultTitle').textContent = t.title;
+      const key = data.plan ? ` · ${data.plan.home_key}` : '';
+      document.getElementById('quickResultMeta').textContent = `${t.bpm} BPM${key} · ${t.duration_sec}s · ${t.isrc}`;
+      const verdict = document.getElementById('quickVerdict');
+      verdict.textContent = data.report.aprobado ? '✓ APTO PARA PUBLICAR' : '✗ REVISAR ANTES DE PUBLICAR';
+      verdict.className = 'check-verdict ' + (data.report.aprobado ? 'check-ok' : 'check-fail');
+      renderChecks(document.getElementById('quickChecks'), data.report);
+      document.getElementById('quickWav').href = `/audio/${t.audio_filename}`;
+      document.getElementById('quickMid').href = `/midi/${t.midi_filename}`;
+      document.getElementById('quickEditBtn').onclick = () => openEditor(t.isrc);
+      document.getElementById('quickFlBtn').onclick = () => downloadFLPackage(t.isrc);
+    }
+
+    async function quickCreate(again) {
+      const btn = document.getElementById('btnQuick');
+      const feedback = document.getElementById('quickFeedback');
+      const len = LENGTHS[quick.length];
+      const title = document.getElementById('quickTitle').value.trim();
+      let request;
+      if (again && quick.lastPayload) {
+        request = quick.lastPayload();
+      } else if (quick.source === 'links') {
+        const urls = document.getElementById('quickUrls').value.split('\n').map(u => u.trim()).filter(Boolean);
+        const files = [...document.getElementById('quickFiles').files];
+        if (!urls.length && !files.length) { feedback.textContent = 'Pega un link o sube un archivo (o elige "Sin fuente").'; return; }
+        if (urls.length + files.length > 5) { feedback.textContent = 'Máximo 5 fuentes.'; return; }
+        const pack = quick.pack;
+        let variation = 0;
+        // Cada "Otra versión" pide la siguiente variación con las mismas fuentes
+        quick.lastPayload = () => {
+          variation += 1;
+          return buildFusionRequest(urls, files, pack, len.section, variation, '');
+        };
+        request = buildFusionRequest(urls, files, pack, len.section, 0, title);
+      } else {
+        const body = { genre: document.getElementById('quickGenre').value, bars: len.bars, title: title, pack: quick.pack };
+        quick.lastPayload = () => generateRequest({ ...body, title: '' });
+        request = generateRequest(body);
+      }
+      btn.disabled = true;
+      btn.textContent = 'Componiendo...';
+      feedback.textContent = quick.source === 'links' ? 'Midiendo fuentes y componiendo...' : 'Componiendo...';
+      try {
+        const res = await fetch(request.url, request.init);
+        const data = await res.json();
+        if (!data.success) { feedback.textContent = 'Error: ' + data.error; return; }
+        feedback.textContent = data.sources
+          ? '✓ ' + data.sources.map(s => `${s.detected_key} ${s.detected_bpm}BPM`).join(' + ')
+          : '✓ Tema creado';
+        showQuickResult(data);
+        if (data.plan) renderFusionResult(data);
+        await loadCatalog();
+        playTrack(data.track);
+        document.getElementById('quickTitle').value = '';
+      } catch (err) {
+        feedback.textContent = 'Error: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '♫ CREAR TEMA';
+      }
+    }
+
+    function generateRequest(body) {
+      return { url: '/api/generate', init: { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } };
+    }
+
+    function buildFusionRequest(urls, files, pack, section, variation, title) {
+      if (files.length) {
+        const form = new FormData();
+        form.append('urls', urls.join('\n'));
+        form.append('pack', pack);
+        form.append('bars_per_section', section);
+        form.append('variation', variation);
+        form.append('title', title);
+        files.forEach(f => form.append('files', f));
+        return { url: '/api/harmonic-fusion', init: { method: 'POST', body: form } };
+      }
+      const body = { urls, pack, bars_per_section: section, variation, title };
+      return { url: '/api/harmonic-fusion', init: { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } };
+    }
+
+    // ===== Editor de temas =====
+    const ROLE_TRACK = { lead: 'melody', pad: 'chords', bass: 'bass', drums: 'drums' };
+    const ROLL_COLORS = { chords: '#1e840a', melody: '#39ff14', bass: '#ffb000', drums: '#7f7f7f' };
+    const editor = { isrc: null, project: null, newMelody: false, roll: null };
+
+    function fillInstrumentSelect(sel, cat, role) {
+      sel.innerHTML = '';
+      const groups = {};
+      cat.roles[role].forEach(inst => {
+        if (!groups[inst.family]) {
+          groups[inst.family] = document.createElement('optgroup');
+          groups[inst.family].label = inst.family;
+          sel.appendChild(groups[inst.family]);
+        }
+        groups[inst.family].appendChild(new Option(inst.name, inst.id));
+      });
+    }
+
+    function openEditor(isrc) {
+      switchTab('tab-editor');
+      loadProject(isrc);
+    }
+
+    function refreshEditorTracks(tracks) {
+      const sel = document.getElementById('editorTrack');
+      const prev = editor.isrc || sel.value;
+      sel.innerHTML = '';
+      tracks.slice().reverse().forEach(t => sel.add(new Option(`${t.title} · ${t.bpm} BPM · ${t.isrc}`, t.isrc)));
+      if (prev) sel.value = prev;
+    }
+
+    async function loadProject(isrc) {
+      if (!isrc) return;
+      const status = document.getElementById('editorStatus');
+      try {
+        const res = await fetch(`/api/project/${encodeURIComponent(isrc)}`);
+        const data = await res.json();
+        if (!data.success) {
+          document.getElementById('editorBody').style.display = 'none';
+          document.getElementById('editorEmpty').style.display = '';
+          document.getElementById('editorEmpty').textContent = data.error;
+          return;
+        }
+        await showProject(data);
+        document.getElementById('editorChecks').innerHTML = '';
+        status.textContent = 'SIN CAMBIOS';
+      } catch (err) {
+        status.textContent = 'ERROR: ' + err.message;
+      }
+    }
+
+    async function showProject(data) {
+      const cat = await ensureCatalog();
+      const p = data.project;
+      editor.isrc = p.isrc;
+      editor.project = p;
+      editor.newMelody = false;
+      editor.roll = data.piano_roll;
+      document.getElementById('editorTrack').value = p.isrc;
+      document.getElementById('editorEmpty').style.display = 'none';
+      document.getElementById('editorBody').style.display = '';
+      document.getElementById('editorTitle').textContent = (data.track && data.track.title) || p.title;
+      document.getElementById('editorMeta').textContent =
+        `${data.key || ''} · ${data.effective_bpm} BPM · v${p.version}`;
+      document.getElementById('newMelodyBtn').classList.remove('pressed');
+
+      const grid = document.getElementById('stripGrid');
+      grid.innerHTML = '';
+      Object.keys(RACK_LABELS).forEach(role => {
+        const strip = document.createElement('div');
+        strip.className = 'channel-strip';
+        strip.innerHTML = `
+          <div class="strip-name"><span>${RACK_LABELS[role]}</span>
+            <button type="button" class="win-btn" aria-label="Probar instrumento">▶</button></div>
+          <select class="win-select" aria-label="Instrumento de ${RACK_LABELS[role]}"></select>
+          <div class="strip-row">
+            <input type="range" class="win-slider" min="0" max="200" step="5" aria-label="Volumen de ${RACK_LABELS[role]}">
+            <span class="vol-readout"></span>
+          </div>
+          <button type="button" class="win-btn mute-btn">Silenciar</button>`;
+        const sel = strip.querySelector('select');
+        fillInstrumentSelect(sel, cat, role);
+        sel.value = p.rack[role];
+        sel.dataset.role = role;
+        const slider = strip.querySelector('input');
+        const readout = strip.querySelector('.vol-readout');
+        slider.value = Math.round((p.volumes[role] ?? 1) * 100);
+        slider.dataset.role = role;
+        readout.textContent = slider.value + '%';
+        slider.addEventListener('input', () => { readout.textContent = slider.value + '%'; markDirty(); });
+        sel.addEventListener('change', markDirty);
+        const mute = strip.querySelector('.mute-btn');
+        mute.dataset.role = role;
+        mute.classList.toggle('pressed', !!p.muted[role]);
+        mute.addEventListener('click', () => { mute.classList.toggle('pressed'); markDirty(); drawPianoRoll(); });
+        strip.querySelector('.strip-name button').addEventListener('click', () => {
+          previewAudio.pause();
+          previewAudio.src = `/api/instrument-preview/${sel.value}`;
+          previewAudio.play().catch(err => console.log('Preview:', err));
+        });
+        grid.appendChild(strip);
+      });
+
+      editorTranspose = p.transpose;
+      document.getElementById('transposeLcd').textContent = (p.transpose > 0 ? '+' : '') + p.transpose;
+      const bpm = document.getElementById('bpmSlider');
+      bpm.value = data.effective_bpm;
+      document.getElementById('bpmLcd').textContent = data.effective_bpm;
+      bpm.oninput = () => { document.getElementById('bpmLcd').textContent = bpm.value; markDirty(); };
+
+      const legend = document.getElementById('rollLegend');
+      legend.innerHTML = '';
+      Object.entries(ROLE_TRACK).forEach(([role, track]) => {
+        const s = document.createElement('span');
+        s.style.color = ROLL_COLORS[track];
+        s.textContent = RACK_LABELS[role];
+        legend.appendChild(s);
+      });
+      drawPianoRoll();
+    }
+
+    let editorTranspose = 0;
+    function nudgeTranspose(step) {
+      editorTranspose = Math.max(-12, Math.min(12, editorTranspose + step));
+      document.getElementById('transposeLcd').textContent = (editorTranspose > 0 ? '+' : '') + editorTranspose;
+      markDirty();
+    }
+
+    function toggleNewMelody() {
+      editor.newMelody = !editor.newMelody;
+      document.getElementById('newMelodyBtn').classList.toggle('pressed', editor.newMelody);
+      markDirty();
+    }
+
+    function markDirty() {
+      document.getElementById('editorStatus').textContent = 'CAMBIOS SIN APLICAR';
+    }
+
+    function mutedRoles() {
+      const out = {};
+      document.querySelectorAll('#stripGrid .mute-btn').forEach(b => { out[b.dataset.role] = b.classList.contains('pressed'); });
+      return out;
+    }
+
+    function collectEdits() {
+      const rack = {}, volumes = {};
+      document.querySelectorAll('#stripGrid select').forEach(s => { rack[s.dataset.role] = s.value; });
+      document.querySelectorAll('#stripGrid input[type=range]').forEach(s => { volumes[s.dataset.role] = s.value / 100; });
+      return {
+        rack, volumes, muted: mutedRoles(),
+        transpose: editorTranspose,
+        bpm: parseInt(document.getElementById('bpmSlider').value, 10),
+        new_melody: editor.newMelody
+      };
+    }
+
+    function drawPianoRoll() {
+      const canvas = document.getElementById('pianoRoll');
+      const roll = editor.roll;
+      if (!roll || !canvas.offsetWidth) return;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+      const g = canvas.getContext('2d');
+      g.fillStyle = '#050a05';
+      g.fillRect(0, 0, canvas.width, canvas.height);
+      const tonal = roll.notes.filter(n => n[0] !== 'drums');
+      const lo = Math.min(...tonal.map(n => n[1]), 36) - 1;
+      const hi = Math.max(...tonal.map(n => n[1]), 84) + 1;
+      const drumBand = 14 * dpr;
+      const h = canvas.height - drumBand;
+      const xs = canvas.width / Math.max(roll.duration, 0.1);
+      const ys = h / (hi - lo);
+      // Lineas de compas
+      const bar = 240 / roll.bpm;
+      g.strokeStyle = '#0f2a0f';
+      for (let t = 0; t < roll.duration; t += bar) {
+        g.beginPath(); g.moveTo(t * xs, 0); g.lineTo(t * xs, canvas.height); g.stroke();
+      }
+      const muted = mutedRoles();
+      const mutedTracks = new Set(Object.entries(ROLE_TRACK).filter(([r]) => muted[r]).map(([, t]) => t));
+      roll.notes.forEach(([track, pitch, start, dur]) => {
+        g.globalAlpha = mutedTracks.has(track) ? 0.15 : 0.9;
+        g.fillStyle = ROLL_COLORS[track] || '#55ff55';
+        if (track === 'drums') {
+          g.fillRect(start * xs, h + 2 * dpr, Math.max(2 * dpr, 0.05 * xs), drumBand - 4 * dpr);
+        } else {
+          g.fillRect(start * xs, h - (pitch - lo) * ys, Math.max(2 * dpr, dur * xs - 1), Math.max(2 * dpr, ys));
+        }
+      });
+      g.globalAlpha = 1;
+    }
+    window.addEventListener('resize', drawPianoRoll);
+
+    async function renderEdit(asNew) {
+      if (!editor.isrc) return;
+      const status = document.getElementById('editorStatus');
+      const btns = [document.getElementById('btnApplyEdit'), document.getElementById('btnSaveAsNew')];
+      btns.forEach(b => { b.disabled = true; });
+      status.textContent = 'RENDERIZANDO...';
+      try {
+        const res = await fetch(`/api/project/${encodeURIComponent(editor.isrc)}/render`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            edits: collectEdits(),
+            as_new: asNew,
+            title: document.getElementById('editAsNewTitle').value.trim()
+          })
+        });
+        const data = await res.json();
+        if (!data.success) { status.textContent = 'ERROR: ' + data.error; return; }
+        await showProject(data);
+        renderChecks(document.getElementById('editorChecks'), data.report);
+        status.textContent = asNew ? `GUARDADO COMO ${data.track.isrc}` : `VERSIÓN ${data.project.version} LISTA`;
+        document.getElementById('editAsNewTitle').value = '';
+        await loadCatalog();
+        playTrack(data.track);
+      } catch (err) {
+        status.textContent = 'ERROR: ' + err.message;
+      } finally {
+        btns.forEach(b => { b.disabled = false; });
+      }
+    }
+
+    // ===== Importar playlist =====
+    const pl = { id: null, data: null, mode: 'per_track' };
+
+    function esc(text) {
+      const d = document.createElement('div');
+      d.textContent = text == null ? '' : String(text);
+      return d.innerHTML;
+    }
+
+    function setPlaylistMode(mode) {
+      pl.mode = mode;
+      document.querySelectorAll('[data-plmode]').forEach(b => b.classList.toggle('pressed', b.dataset.plmode === mode));
+    }
+
+    function toggleAllPlaylist(on) {
+      document.querySelectorAll('.pl-check:not(:disabled)').forEach(c => { c.checked = on; });
+    }
+
+    async function importPlaylist() {
+      const url = document.getElementById('plUrl').value.trim();
+      const feedback = document.getElementById('plFeedback');
+      const btn = document.getElementById('btnPlImport');
+      const bar = document.getElementById('plBar');
+      if (!url) { feedback.textContent = 'Pega el link de la playlist.'; return; }
+      btn.disabled = true;
+      bar.style.width = '0%';
+      feedback.textContent = 'Leyendo la playlist...';
+      try {
+        const res = await fetch('/api/playlist/import', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url,
+            limit: parseInt(document.getElementById('plLimit').value),
+            shuffle: document.getElementById('plPick').value === 'random',
+          }),
+        });
+        const data = await res.json();
+        if (!data.success) { feedback.textContent = 'Error: ' + data.error; btn.disabled = false; return; }
+        pollPlaylistJob(data.job_id);
+      } catch (err) {
+        feedback.textContent = 'Error: ' + err.message;
+        btn.disabled = false;
+      }
+    }
+
+    async function pollPlaylistJob(jobId) {
+      const feedback = document.getElementById('plFeedback');
+      const bar = document.getElementById('plBar');
+      const btn = document.getElementById('btnPlImport');
+      try {
+        const job = await (await fetch(`/api/playlist/job/${jobId}`)).json();
+        if (!job.success || job.status === 'error') {
+          feedback.textContent = 'Error: ' + (job.error || 'trabajo perdido');
+          btn.disabled = false;
+          return;
+        }
+        if (job.total) bar.style.width = `${Math.round(100 * job.done / job.total)}%`;
+        if (job.status === 'done') {
+          bar.style.width = '100%';
+          feedback.textContent = '✓ Playlist analizada';
+          btn.disabled = false;
+          loadPlaylist(job.playlist_id);
+          return;
+        }
+        feedback.textContent = job.total
+          ? `Midiendo ${job.done + 1}/${job.total}: ${job.current}`
+          : job.current;
+      } catch (err) {
+        feedback.textContent = 'Reintentando... ' + err.message;
+      }
+      setTimeout(() => pollPlaylistJob(jobId), 1000);
+    }
+
+    async function loadPlaylist(id) {
+      const res = await fetch(`/api/playlist/${encodeURIComponent(id)}`);
+      const data = await res.json();
+      if (!data.success) return;
+      pl.id = id;
+      try { localStorage.setItem('lastPlaylist', id); } catch (e) {}
+      renderPlaylist(data.playlist);
+    }
+
+    function renderPlaylist(data) {
+      pl.data = data;
+      document.getElementById('plBody').style.display = '';
+      document.getElementById('plTitle').textContent = data.title;
+      const ok = data.tracks.filter(t => !t.error).length;
+      document.getElementById('plCount').textContent = `${ok}/${data.tracks.length} TEMAS MEDIDOS`;
+      document.getElementById('plGroups').innerHTML = data.groups
+        .map(g => `<span>■ ${esc(g.name)}: ${g.indices.length}</span>`).join('') || '<span>Sin temas medidos</span>';
+      const genreOpts = data.genres.map(g => `<option value="${g.id}">${esc(g.name)}</option>`).join('');
+      const body = document.getElementById('plTableBody');
+      body.innerHTML = '';
+      data.tracks.forEach(t => {
+        const tr = document.createElement('tr');
+        const title = `<a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.title)}</a>`;
+        if (t.error) {
+          tr.innerHTML = `<td><input type="checkbox" class="pl-check" disabled aria-label="No disponible"></td>
+            <td>${t.index + 1}</td><td>${title}</td><td class="pl-err" colspan="4">No se pudo medir: ${esc(t.error)}</td>`;
+        } else {
+          const f = t.features;
+          const doubt = t.ambiguous ? ' <span class="pl-doubt" title="Dos géneros quedaron muy parejos">?</span>' : '';
+          tr.innerHTML = `<td><input type="checkbox" class="pl-check" data-index="${t.index}" checked aria-label="Usar este tema"></td>
+            <td>${t.index + 1}</td>
+            <td>${title}</td>
+            <td><select class="win-select" aria-label="Género" title="${esc(t.genre_reason)}"><option value="auto">AUTO</option>${genreOpts}</select>${doubt}</td>
+            <td>${f.bpm}</td>
+            <td>${esc(f.key)}</td>
+            <td class="pl-feat">brillo ${Math.round(f.brightness_hz)}Hz · graves ${Math.round(f.bass_ratio * 100)}% · perc ${Math.round(f.percussiveness * 100)}% · ${f.onset_rate} golpes/s</td>`;
+          const sel = tr.querySelector('select');
+          sel.value = t.genre_overridden ? t.genre : 'auto';
+          sel.options[0].textContent = `AUTO: ${data.genres.find(g => g.id === t.genre_ranking[0].genre).name}`;
+          sel.addEventListener('change', () => setPlaylistGenre(t.index, sel.value));
+        }
+        body.appendChild(tr);
+      });
+    }
+
+    async function setPlaylistGenre(index, genre) {
+      const res = await fetch(`/api/playlist/${encodeURIComponent(pl.id)}/genre`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ index, genre }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        const checked = [...document.querySelectorAll('.pl-check:checked')].map(c => +c.dataset.index);
+        renderPlaylist(data.playlist);
+        document.querySelectorAll('.pl-check:not(:disabled)').forEach(c => { c.checked = checked.includes(+c.dataset.index); });
+      }
+    }
+
+    async function composePlaylist() {
+      if (!pl.id) return;
+      const feedback = document.getElementById('plComposeFeedback');
+      const btn = document.getElementById('btnPlCompose');
+      const indices = [...document.querySelectorAll('.pl-check:checked')].map(c => +c.dataset.index);
+      if (!indices.length) { feedback.textContent = 'Marca al menos un tema.'; return; }
+      const body = { mode: pl.mode, bars: parseInt(document.getElementById('plBars').value), pack: document.getElementById('plPack').value };
+      if (pl.mode === 'per_track') {
+        body.indices = indices;
+      } else {
+        body.genres = [...new Set(pl.data.tracks.filter(t => indices.includes(t.index)).map(t => t.genre))];
+      }
+      const n = pl.mode === 'per_track' ? indices.length : body.genres.length;
+      btn.disabled = true;
+      feedback.textContent = `Componiendo ${n} tema(s) nuevo(s)... (unos segundos por tema)`;
+      try {
+        const res = await fetch(`/api/playlist/${encodeURIComponent(pl.id)}/compose`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (data.results && data.results.length) renderPlaylistResults(data.results);
+        if (!data.success) { feedback.textContent = 'Error: ' + data.error; return; }
+        const okCount = data.results.filter(r => r.report.aprobado).length;
+        feedback.textContent = `✓ ${data.results.length} tema(s) creados · ${okCount} aptos para publicar`;
+        await loadCatalog();
+        playTrack(data.results[0].track);
+      } catch (err) {
+        feedback.textContent = 'Error: ' + err.message;
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function renderPlaylistResults(results) {
+      document.getElementById('plResults').style.display = '';
+      document.getElementById('plResultsCount').textContent = `${results.length} NUEVO(S)`;
+      const list = document.getElementById('plResultsList');
+      list.innerHTML = '';
+      results.forEach(r => {
+        const t = r.track;
+        const div = document.createElement('div');
+        div.className = 'pl-result';
+        const from = r.sources.map(s => `#${s.index + 1}`).join(', ');
+        const failed = r.report.checks.filter(c => !c.passed).map(c => c.check).join(', ');
+        div.innerHTML = `<div><strong>${esc(t.title)}</strong> · ${esc(r.genre_name)} · ${esc(r.key)} · ${t.bpm} BPM · ${t.isrc}</div>
+          <div class="${r.report.aprobado ? 'check-ok' : 'check-fail'}">${r.report.aprobado ? '✓ APTO PARA PUBLICAR' : '✗ REVISAR: ' + esc(failed)} · inspirado en ${from}</div>
+          <div style="color: var(--amber);">${r.instruments.map(i => esc(i.name)).join(' · ')}</div>
+          <div class="result-actions">
+            <button type="button" class="win-btn" data-act="play">► Escuchar</button>
+            <button type="button" class="win-btn win-btn-primary" data-act="edit">✎ Editar</button>
+            <a class="win-btn" href="/audio/${encodeURIComponent(t.audio_filename)}" download>💾 WAV</a>
+            <a class="win-btn" href="/midi/${encodeURIComponent(t.midi_filename)}" download>🎹 MIDI</a>
+            <button type="button" class="win-btn" data-act="fl">FL Studio</button>
+          </div>`;
+        div.querySelector('[data-act="play"]').onclick = () => playTrack(t);
+        div.querySelector('[data-act="edit"]').onclick = () => openEditor(t.isrc);
+        div.querySelector('[data-act="fl"]').onclick = () => downloadFLPackage(t.isrc);
+        list.appendChild(div);
+      });
+    }
+
+    async function initPlaylistTab() {
+      try {
+        const cat = await ensureCatalog();
+        const sel = document.getElementById('plPack');
+        cat.packs.forEach(p => sel.add(new Option(`Sonido: ${p.name}`, p.id)));
+      } catch (err) {}
+      let last = null;
+      try { last = localStorage.getItem('lastPlaylist'); } catch (e) {}
+      if (last) loadPlaylist(last);
+    }
+
+    initPacks();
+    initPlaylistTab();
+
+    initRack();
 
     // Mezclador
     document.getElementById('mixForm').addEventListener('submit', async (e) => {

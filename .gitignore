@@ -17,3 +17,6 @@ output/audio/*.wav
 !output/audio/.gitkeep
 output/fl_packages/*.zip
 output/fl_packages/FL_Project_*/
+
+# Previews del rack de instrumentos (se regeneran)
+output/previews/

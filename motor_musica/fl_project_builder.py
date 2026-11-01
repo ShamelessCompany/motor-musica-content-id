@@ -32,8 +32,13 @@ def create_flstudio_editable_project(
     bundle: MidiTrackBundle,
     project_name: str,
     output_root_dir: str,
+    instruments: Optional[Dict[str, str]] = None,
 ) -> FLStudioPackageInfo:
-    """Crea una carpeta de proyecto 100% editable para FL Studio con MIDI multipista y stems."""
+    """Crea una carpeta de proyecto 100% editable para FL Studio con MIDI multipista y stems.
+
+    instruments: rack {rol: id} del motor; si se pasa, cada stem lleva el programa GM y
+    el plugin sugerido del instrumento elegido.
+    """
     project_dir = Path(output_root_dir) / f"FL_Project_{project_name}"
     stems_dir = project_dir / "stems"
     stems_dir.mkdir(parents=True, exist_ok=True)
@@ -54,6 +59,16 @@ def create_flstudio_editable_project(
         ("04_Drums_Kit", "drums", 9, 0, "FPC General MIDI Drumkit"),
     ]
     
+    if instruments:
+        from .instruments import INSTRUMENTS, TRACK_ROLE, resolve_rack
+
+        rack = resolve_rack(instruments)
+        tracks_info = [
+            (tag, track, ch, INSTRUMENTS[rack[TRACK_ROLE[track]]].gm_program if track != "drums" else prog,
+             f"{INSTRUMENTS[rack[TRACK_ROLE[track]]].fl_plugin} ({INSTRUMENTS[rack[TRACK_ROLE[track]]].name})")
+            for tag, track, ch, prog, _ in tracks_info
+        ]
+
     exported_stems: List[str] = []
     
     for filename_tag, track_name, ch, prog, vst_hint in tracks_info:
@@ -99,10 +114,14 @@ def create_flstudio_editable_project(
             "4. Asigna los sintetizadores nativos sugeridos abajo a cada canal."
         ),
         "channel_rack_mapping": [
-            {"channel_number": 1, "midi_channel": 1, "stem": "01_Chords_Pads.mid", "recommended_vst": "Sytrus / FLEX", "mixer_insert": 1},
-            {"channel_number": 2, "midi_channel": 2, "stem": "02_Melody_Lead.mid", "recommended_vst": "Sytrus / Harmless", "mixer_insert": 2},
-            {"channel_number": 3, "midi_channel": 3, "stem": "03_Bassline.mid", "recommended_vst": "3xOSC / BooBass", "mixer_insert": 3},
-            {"channel_number": 4, "midi_channel": 10, "stem": "04_Drums_Kit.mid", "recommended_vst": "FPC", "mixer_insert": 4},
+            {
+                "channel_number": i + 1,
+                "midi_channel": ch + 1,
+                "stem": f"{tag}.mid",
+                "recommended_vst": vst_hint,
+                "mixer_insert": i + 1,
+            }
+            for i, (tag, _, ch, _, vst_hint) in enumerate(tracks_info)
         ]
     }
     with open(project_dir / "FL_Studio_Routing_Guide.json", "w", encoding="utf-8") as f:
