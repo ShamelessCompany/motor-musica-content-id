@@ -8,13 +8,14 @@
     "duration_sec": 34.0,
     "isrc": "US-SHM-26-00001",
     "creation_date": "2026-10-23T17:14:21Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "track_01_epic_cinematic.mid",
     "audio_filename": "track_01_epic_cinematic.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -18.07
+    "estimated_lufs": -1.92,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Cyberpunk Overdrive 1984",
@@ -25,13 +26,14 @@
     "duration_sec": 32.97,
     "isrc": "US-SHM-26-00002",
     "creation_date": "2026-10-23T17:14:23Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "track_02_synthwave.mid",
     "audio_filename": "track_02_synthwave.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -17.7
+    "estimated_lufs": -1.57,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Coffee & Midnight Vinyl",
@@ -42,13 +44,14 @@
     "duration_sec": 37.12,
     "isrc": "US-SHM-26-00003",
     "creation_date": "2026-10-23T17:14:25Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "track_03_lofi_chill.mid",
     "audio_filename": "track_03_lofi_chill.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -18.05
+    "estimated_lufs": -1.08,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Thunderstruck Velocity",
@@ -59,13 +62,14 @@
     "duration_sec": 30.24,
     "isrc": "US-SHM-26-00004",
     "creation_date": "2026-10-23T17:14:27Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "track_04_hard_rock.mid",
     "audio_filename": "track_04_hard_rock.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -15.69
+    "estimated_lufs": -3.98,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Test Web Riff",
@@ -76,13 +80,14 @@
     "duration_sec": 16.12,
     "isrc": "US-SHM-26-00005",
     "creation_date": "2026-10-23T17:16:27Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "track_05_hard_rock.mid",
     "audio_filename": "track_05_hard_rock.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -15.72
+    "estimated_lufs": -3.76,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Midnight Phantom 808",
@@ -93,13 +98,14 @@
     "duration_sec": 29.43,
     "isrc": "US-SHM-26-00006",
     "creation_date": "2026-10-23T17:32:02Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "track_06_dark_trap.mid",
     "audio_filename": "track_06_dark_trap.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -18.72
+    "estimated_lufs": -1.69,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Brooklyn Rooftop Cypher",
@@ -110,13 +116,14 @@
     "duration_sec": 43.74,
     "isrc": "US-SHM-26-00007",
     "creation_date": "2026-10-23T17:32:07Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "track_07_boom_bap.mid",
     "audio_filename": "track_07_boom_bap.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -17.04
+    "estimated_lufs": -2.26,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Rock into Trap Medley",
@@ -127,13 +134,14 @@
     "duration_sec": 56.66,
     "isrc": "US-SHM-26-00008",
     "creation_date": "2026-10-23T17:43:17Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "mix_08_crossfade.mid",
     "audio_filename": "mix_08_crossfade.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -15.31
+    "estimated_lufs": -1.87,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "DJ Medley (Epic Theme - ➔ Epic Theme -)",
@@ -144,13 +152,14 @@
     "duration_sec": 64.0,
     "isrc": "US-SHM-26-00009",
     "creation_date": "2026-10-23T18:14:35Z",
-    "content_id_certified": true,
+    "content_id_certified": false,
     "sample_packs_used": false,
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "mix_09_crossfade.mid",
     "audio_filename": "mix_09_crossfade.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -16.33
+    "estimated_lufs": -0.87,
+    "content_id_checks": "sonoridad_lufs=falla;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Savage Dynasty Trap",
@@ -166,8 +175,9 @@
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "playlist_10_dark_trap.mid",
     "audio_filename": "playlist_10_dark_trap.wav",
-    "peak_dbfs": -1.65,
-    "estimated_lufs": -14.0
+    "peak_dbfs": -1.66,
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "VVS Diamond Frost",
@@ -184,7 +194,8 @@
     "midi_filename": "playlist_11_dark_trap.mid",
     "audio_filename": "playlist_11_dark_trap.wav",
     "peak_dbfs": -1.56,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Chrome Boulevard",
@@ -201,7 +212,8 @@
     "midi_filename": "playlist_12_synthwave.mid",
     "audio_filename": "playlist_12_synthwave.wav",
     "peak_dbfs": -1.13,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Echoes of Valhalla",
@@ -218,7 +230,8 @@
     "midi_filename": "playlist_13_epic_cinematic.mid",
     "audio_filename": "playlist_13_epic_cinematic.wav",
     "peak_dbfs": -1.11,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Harlem Brownstone Soul",
@@ -235,7 +248,8 @@
     "midi_filename": "playlist_14_boom_bap.mid",
     "audio_filename": "playlist_14_boom_bap.wav",
     "peak_dbfs": -1.03,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Chrome Boulevard",
@@ -252,7 +266,8 @@
     "midi_filename": "playlist_15_synthwave.mid",
     "audio_filename": "playlist_15_synthwave.wav",
     "peak_dbfs": -1.21,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Chronicles of the Iron Titan",
@@ -269,7 +284,8 @@
     "midi_filename": "playlist_16_epic_cinematic.mid",
     "audio_filename": "playlist_16_epic_cinematic.wav",
     "peak_dbfs": -1.17,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Electric Wasteland Riff",
@@ -286,7 +302,8 @@
     "midi_filename": "playlist_17_hard_rock.mid",
     "audio_filename": "playlist_17_hard_rock.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Subway Graffiti Vibe",
@@ -303,7 +320,8 @@
     "midi_filename": "playlist_18_boom_bap.mid",
     "audio_filename": "playlist_18_boom_bap.wav",
     "peak_dbfs": -1.01,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Concrete Jazz Theory",
@@ -320,7 +338,8 @@
     "midi_filename": "playlist_19_boom_bap.mid",
     "audio_filename": "playlist_19_boom_bap.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Raw Vinyl Boom Bap",
@@ -337,7 +356,8 @@
     "midi_filename": "playlist_20_boom_bap.mid",
     "audio_filename": "playlist_20_boom_bap.wav",
     "peak_dbfs": -1.01,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Midnight Phantom 808",
@@ -354,7 +374,8 @@
     "midi_filename": "playlist_21_dark_trap.mid",
     "audio_filename": "playlist_21_dark_trap.wav",
     "peak_dbfs": -1.64,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Cortege of Kings",
@@ -371,7 +392,8 @@
     "midi_filename": "playlist_22_dark_trap.mid",
     "audio_filename": "playlist_22_dark_trap.wav",
     "peak_dbfs": -1.89,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Subway Graffiti Vibe",
@@ -388,7 +410,8 @@
     "midi_filename": "playlist_23_boom_bap.mid",
     "audio_filename": "playlist_23_boom_bap.wav",
     "peak_dbfs": -1.01,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Cassette Tape Memories",
@@ -404,8 +427,9 @@
     "composition_mode": "100% Algorithmic Pure Synthesis",
     "midi_filename": "playlist_24_synthwave.mid",
     "audio_filename": "playlist_24_synthwave.wav",
-    "peak_dbfs": -1.28,
-    "estimated_lufs": -14.0
+    "peak_dbfs": -1.29,
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Crate Digger Chronicles",
@@ -422,7 +446,8 @@
     "midi_filename": "playlist_25_boom_bap.mid",
     "audio_filename": "playlist_25_boom_bap.wav",
     "peak_dbfs": -1.02,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Outrun Overdrive",
@@ -439,7 +464,8 @@
     "midi_filename": "playlist_26_synthwave.mid",
     "audio_filename": "playlist_26_synthwave.wav",
     "peak_dbfs": -1.14,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Black Smoke Anthem",
@@ -456,7 +482,8 @@
     "midi_filename": "playlist_27_hard_rock.mid",
     "audio_filename": "playlist_27_hard_rock.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Raw Vinyl Boom Bap",
@@ -473,7 +500,8 @@
     "midi_filename": "playlist_28_boom_bap.mid",
     "audio_filename": "playlist_28_boom_bap.wav",
     "peak_dbfs": -1.01,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "VVS Diamond Frost",
@@ -490,7 +518,8 @@
     "midi_filename": "playlist_29_dark_trap.mid",
     "audio_filename": "playlist_29_dark_trap.wav",
     "peak_dbfs": -1.55,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Raw Vinyl Boom Bap",
@@ -507,7 +536,8 @@
     "midi_filename": "playlist_30_boom_bap.mid",
     "audio_filename": "playlist_30_boom_bap.wav",
     "peak_dbfs": -1.01,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Electric Wasteland Riff",
@@ -524,7 +554,8 @@
     "midi_filename": "playlist_31_hard_rock.mid",
     "audio_filename": "playlist_31_hard_rock.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Grim Reaper Glide",
@@ -541,7 +572,8 @@
     "midi_filename": "playlist_32_dark_trap.mid",
     "audio_filename": "playlist_32_dark_trap.wav",
     "peak_dbfs": -2.17,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Sinister Slime Drift",
@@ -558,7 +590,8 @@
     "midi_filename": "playlist_33_dark_trap.mid",
     "audio_filename": "playlist_33_dark_trap.wav",
     "peak_dbfs": -1.3,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Black Smoke Anthem",
@@ -575,7 +608,8 @@
     "midi_filename": "playlist_34_hard_rock.mid",
     "audio_filename": "playlist_34_hard_rock.wav",
     "peak_dbfs": -1.0,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   },
   {
     "title": "Savage Dynasty Trap",
@@ -592,6 +626,7 @@
     "midi_filename": "playlist_35_dark_trap.mid",
     "audio_filename": "playlist_35_dark_trap.wav",
     "peak_dbfs": -1.36,
-    "estimated_lufs": -14.0
+    "estimated_lufs": -14.0,
+    "content_id_checks": "sonoridad_lufs=ok;true_peak=ok;sin_clipping=ok"
   }
 ]

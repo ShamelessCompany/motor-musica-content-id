@@ -117,6 +117,8 @@ Para generar una tanda completa de temas de prueba con audio WAV, MIDI multipist
 python demo.py
 ```
 
+> ⚠ `demo.py` numera los ISRC desde `00001` y sobrescribe `output/metadata/catalog_content_id.json`. No lo ejecutes en la carpeta con tu catálogo real: usa una copia (`git worktree add`).
+
 ---
 
 ## 6. Ejecución de la Suite de Pruebas Unitarias
@@ -178,8 +180,9 @@ D:\ProyectosProgramacion\motor-musica-content-id/
 ## 8. Flujo de Monetización en Content ID
 
 1. Ejecutar `python app.py` o `python demo.py` para generar una tanda de pistas instrumentales.
-2. Comprobar que los audios cumplen con el estándar (-14 LUFS, True Peak <= -1.0 dBFS).
-3. Importar `output/metadata/catalog_content_id.csv` en tu distribuidora (**Identifyy**, **Soundrop**, **Songtradr** o **TuneCore**).
+2. Revisar en el catálogo el campo `content_id_certified`: solo es `True` cuando pasan los checks reales del tema (−14 LUFS ±2, true peak ≤ −1 dBFS, sin clipping; en la fusión, además, la huella contra las fuentes). `content_id_checks` dice cuáles pasaron. Para revisar el catálogo existente: `python reevaluar_catalogo.py` (simulación) y `python reevaluar_catalogo.py --aplicar`.
+   > Son checks **internos**. Antes de registrar en la distribuidora, compara el lote con música de terceros (ACRCloud o similar): un tema parecido a otro genera reclamos falsos y la distribuidora puede expulsar la cuenta.
+3. Importar en tu distribuidora **solo las filas con `content_id_certified = True`** de `output/metadata/catalog_content_id.csv` (**Identifyy**, **Soundrop**, **Songtradr** o **TuneCore**).
 4. Subir los archivos `.wav` de `output/audio/` correspondientes a cada código ISRC.
 5. Activar la casilla **"YouTube Content ID"** en el panel de distribución.
 6. A partir de ese momento, cualquier video de YouTube que utilice la música generará ingresos automáticos por reclamo de derechos de autor.

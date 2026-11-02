@@ -630,7 +630,7 @@ def create_harmonic_fusion(
         midi_filename=Path(output_mid_path).name,
         audio_filename=Path(output_wav_path).name,
         peak_dbfs=metrics.peak_dbfs,
-        estimated_lufs=metrics.estimated_lufs,
+        estimated_lufs=metrics.estimated_lufs, metrics=metrics, checks=[CheckResult(**c) for c in report["checks"]],
         custom_title=title,
     )
     return FusionResult(plan, bundle, metrics, meta, report, spans)

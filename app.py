@@ -272,7 +272,7 @@ def generate_track():
         midi_filename=midi_path.name,
         audio_filename=wav_path.name,
         peak_dbfs=metrics.peak_dbfs,
-        estimated_lufs=metrics.estimated_lufs,
+        estimated_lufs=metrics.estimated_lufs, metrics=metrics,
         custom_title=custom_title,
     )
     
@@ -293,6 +293,7 @@ def generate_track():
                 isrc=item["isrc"],
                 creation_date=item["creation_date"],
                 content_id_certified=item["content_id_certified"],
+                content_id_checks=item.get("content_id_checks", "sin verificar"),
                 sample_packs_used=item["sample_packs_used"],
                 composition_mode=item["composition_mode"],
                 midi_filename=item["midi_filename"],
@@ -361,6 +362,7 @@ def analyze_and_compose_youtube():
                     isrc=item["isrc"],
                     creation_date=item["creation_date"],
                     content_id_certified=item["content_id_certified"],
+                    content_id_checks=item.get("content_id_checks", "sin verificar"),
                     sample_packs_used=item["sample_packs_used"],
                     composition_mode=item["composition_mode"],
                     midi_filename=item["midi_filename"],
@@ -706,7 +708,7 @@ def playlist_compose_api(pid):
             meta = generate_track_metadata(
                 genre=genre, bpm=bundle.bpm, scale=key, duration_sec=metrics.duration_sec,
                 track_number=track_num, midi_filename=midi_path.name, audio_filename=wav_path.name,
-                peak_dbfs=metrics.peak_dbfs, estimated_lufs=metrics.estimated_lufs,
+                peak_dbfs=metrics.peak_dbfs, estimated_lufs=metrics.estimated_lufs, metrics=metrics,
             )
             project.isrc, project.title = meta.isrc, meta.title
             _save_project(project)
@@ -806,7 +808,7 @@ def render_project_api(isrc):
         meta = generate_track_metadata(
             genre=entry["genre"], bpm=bundle.bpm, scale=entry["scale"], duration_sec=metrics.duration_sec,
             track_number=track_num, midi_filename=midi_path.name, audio_filename=wav_path.name,
-            peak_dbfs=metrics.peak_dbfs, estimated_lufs=metrics.estimated_lufs, custom_title=title,
+            peak_dbfs=metrics.peak_dbfs, estimated_lufs=metrics.estimated_lufs, custom_title=title, metrics=metrics,
         )
         edited.isrc, edited.title = meta.isrc, meta.title
         _append_to_catalog(catalog, meta)
@@ -929,7 +931,7 @@ def mix_tracks_api():
             midi_filename=Path(out_mid).name,
             audio_filename=Path(out_wav).name,
             peak_dbfs=metrics.peak_dbfs,
-            estimated_lufs=metrics.estimated_lufs,
+            estimated_lufs=metrics.estimated_lufs, metrics=metrics,
             custom_title=title,
         )
     else:  # crossfade
@@ -945,7 +947,7 @@ def mix_tracks_api():
             midi_filename=Path(out_mid).name,
             audio_filename=Path(out_wav).name,
             peak_dbfs=metrics.peak_dbfs,
-            estimated_lufs=metrics.estimated_lufs,
+            estimated_lufs=metrics.estimated_lufs, metrics=metrics,
             custom_title=title,
         )
         
@@ -962,6 +964,7 @@ def mix_tracks_api():
                 isrc=item["isrc"],
                 creation_date=item["creation_date"],
                 content_id_certified=item["content_id_certified"],
+                content_id_checks=item.get("content_id_checks", "sin verificar"),
                 sample_packs_used=item["sample_packs_used"],
                 composition_mode=item["composition_mode"],
                 midi_filename=item["midi_filename"],

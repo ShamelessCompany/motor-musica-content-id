@@ -214,7 +214,7 @@ def stem_mashup_remix(
         midi_filename=Path(output_mid).name,
         audio_filename=Path(output_wav).name,
         peak_dbfs=metrics.peak_dbfs,
-        estimated_lufs=metrics.estimated_lufs,
+        estimated_lufs=metrics.estimated_lufs, metrics=metrics,
         custom_title=title,
     )
     

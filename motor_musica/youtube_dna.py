@@ -331,7 +331,7 @@ def compose_original_from_youtube_dna(
         midi_filename=Path(output_mid_path).name if output_mid_path else "yt_track.mid",
         audio_filename=Path(output_wav_path).name if output_wav_path else "yt_track.wav",
         peak_dbfs=metrics.peak_dbfs,
-        estimated_lufs=metrics.estimated_lufs,
+        estimated_lufs=metrics.estimated_lufs, metrics=metrics,
         custom_title=title,
     )
     

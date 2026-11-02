@@ -40,7 +40,9 @@ class TestMetadata(unittest.TestCase):
                 data = json.load(f)
                 self.assertEqual(len(data), 2)
                 self.assertEqual(data[0]["isrc"], "US-SHM-26-00001")
-                self.assertTrue(data[0]["content_id_certified"])
+                # Sin métricas no hay checks: el tema no puede salir certificado
+                self.assertFalse(data[0]["content_id_certified"])
+                self.assertEqual(data[0]["content_id_checks"], "sin verificar")
 
 
 if __name__ == "__main__":

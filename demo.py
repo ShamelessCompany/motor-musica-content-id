@@ -105,7 +105,7 @@ def run_demo():
             midi_filename=midi_path.name,
             audio_filename=wav_path.name,
             peak_dbfs=metrics.peak_dbfs,
-            estimated_lufs=metrics.estimated_lufs,
+            estimated_lufs=metrics.estimated_lufs, metrics=metrics,
             custom_title=custom_title,
         )
         tracks_metadata.append(meta)

@@ -9,7 +9,10 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 import json
 import random
-from typing import List, Optional
+from typing import List, Optional, Sequence
+
+from .content_id_checks import CheckResult, check_master
+from .synth_renderer import AudioMetrics
 
 
 TITLE_POOLS = {
@@ -93,6 +96,12 @@ class TrackMetadata:
     audio_filename: str
     peak_dbfs: Optional[float] = None
     estimated_lufs: Optional[float] = None
+    # Resumen de los checks que respaldan content_id_certified ("nombre=ok;nombre=falla")
+    content_id_checks: str = "sin verificar"
+
+
+def resumir_checks(checks: Sequence[CheckResult]) -> str:
+    return ";".join(f"{c.check}={'ok' if c.passed else 'falla'}" for c in checks) or "sin verificar"
 
 
 def generate_isrc(track_number: int, country: str = "US", registrant: str = "SHM", year: int = 26) -> str:
@@ -112,8 +121,24 @@ def generate_track_metadata(
     peak_dbfs: Optional[float] = None,
     estimated_lufs: Optional[float] = None,
     custom_title: Optional[str] = None,
+    metrics: Optional[AudioMetrics] = None,
+    checks: Optional[Sequence[CheckResult]] = None,
 ) -> TrackMetadata:
-    """Crea la ficha técnica y legal para registro en Content ID."""
+    """Crea la ficha técnica y legal para registro en Content ID.
+
+    content_id_certified solo es True si hay checks y todos pasan: los que se pasen en
+    `checks` (p. ej. el informe de la fusión, con huella contra las fuentes) o, si no hay,
+    los del master calculados con `metrics` (-14 LUFS, true peak, sin clipping).
+    Son checks internos: antes de registrar en la distribuidora sigue haciendo falta
+    comparar con música de terceros (ACRCloud o similar).
+    """
+    if checks is None and metrics is not None:
+        checks = check_master(metrics)
+    checks = list(checks or [])
+    certified = bool(checks) and all(c.passed for c in checks)
+    if metrics is not None:
+        peak_dbfs = metrics.peak_dbfs if peak_dbfs is None else peak_dbfs
+        estimated_lufs = metrics.estimated_lufs if estimated_lufs is None else estimated_lufs
     pool = TITLE_POOLS.get(genre, TITLE_POOLS["epic_cinematic"])
     title = custom_title or random.choice(pool)
     isrc = generate_isrc(track_number)
@@ -128,13 +153,14 @@ def generate_track_metadata(
         duration_sec=round(duration_sec, 2),
         isrc=isrc,
         creation_date=now_iso,
-        content_id_certified=True,
+        content_id_certified=certified,
         sample_packs_used=False,
         composition_mode="100% Algorithmic Pure Synthesis",
         midi_filename=midi_filename,
         audio_filename=audio_filename,
         peak_dbfs=round(peak_dbfs, 2) if peak_dbfs is not None else None,
         estimated_lufs=round(estimated_lufs, 2) if estimated_lufs is not None else None,
+        content_id_checks=resumir_checks(checks),
     )
 
 
@@ -160,6 +186,7 @@ def export_distribution_catalog(
         "duration_sec",
         "creation_date",
         "content_id_certified",
+        "content_id_checks",
         "sample_packs_used",
         "audio_filename",
         "midi_filename",
